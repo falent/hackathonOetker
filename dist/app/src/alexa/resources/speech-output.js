@@ -54,6 +54,9 @@ module.exports = {
         ],
         CANCEL_ANSWER: [
             "Sie haben den Skill abgebrochen"
+        ],
+        RECIPE: [
+            "Welche Rezepte brauchen Sie?"
         ]
     }
   }

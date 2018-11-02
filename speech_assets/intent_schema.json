@@ -30,9 +30,26 @@
           "samples": [
             "mein Name ist {name}"
           ]
+        },
+        {
+          "name": "recipeIntent",
+          "slots": [
+            {
+              "name": "recipeName",
+              "type": "AMAZON.Food"
+            }
+          ],
+          "samples": [
+            "ich brauche {recipeName}"
+          ]
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "RECIPE",
+          "values": []
+        }
+      ]
     }
   }
 }
