@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "de-DE": {
+          "summary": "Alexa Skill Hackathon",
+          "examplePhrases": [
+            "Alexa, open oc Baumarkt",
+            "Alexa, start oc Baumarkt"
+          ],
+          "keywords": [
+            "Opitz"
+          ],
+          "name": "oc Baumarkt",
+          "description": "Alexa Hackathon bei Opitz Consulting"
+        },
+        "en-US": {
+          "summary": "Alexa1 Skill Hackathon",
+          "examplePhrases": [
+            "Alexa, open oc construction market",
+            "Alexa, start oc construction market"
+          ],
+          "keywords": [
+            "Opitz"
+          ],
+          "name": "oc Baumarkt",
+          "description": "Alexa Hackathon at Opitz Consulting 2018"
+        }
+
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Include your testing instruction (if any) here",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "https://your_individual_ngrok_address.io",
+          "sslCertificateType": "Wildcard"
+        },
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "https://your_individual_ngrok_address.io",
+              "sslCertificateType": "Wildcard"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [],
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "isExportCompliant": true,
+      "containsAds": false,
+      "isChildDirected": false,
+      "usesPersonalInfo": false
+    }
+  }
+}
