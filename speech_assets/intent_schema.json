@@ -1,31 +1,38 @@
 {
-  "intents": [
-    {
-      "slots": [
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "doktor oetker",
+      "intents": [
         {
-          "name": "firstname",
-          "type": "AMAZON.DE_FIRST_NAME"
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "nameIntent",
+          "slots": [
+            {
+              "name": "name",
+              "type": "AMAZON.DE_FIRST_NAME"
+            }
+          ],
+          "samples": [
+            "mein Name ist {name}"
+          ]
         }
       ],
-      "intent": "NameIntent"
-    },
-    {
-      "intent": "TemplateIntent"
-    },
-    {
-      "intent": "AMAZON.HelpIntent"
-    },
-    {
-      "intent": "AMAZON.YesIntent"
-    },
-    {
-      "intent": "AMAZON.NoIntent"
-    },
-    {
-      "intent": "AMAZON.StopIntent"
-    },
-    {
-      "intent": "AMAZON.CancelIntent"
+      "types": []
     }
-  ]
+  }
 }
