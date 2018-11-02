@@ -46,9 +46,9 @@ module.exports = {
 
     },
     // Custom Intents:
-    'FindDepartmentIntent': function() {
-        this.handler.state = States.DEPARTMENT;
-        this.emitWithState('FindDepartmentIntent');
+    'NameIntent': function() {
+        this.handler.state = States.NAME;
+        this.emitWithState('NameIntent');
     },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")

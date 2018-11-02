@@ -37,8 +37,8 @@ module.exports = {
         REPEAT: [
             "Sagen Sie es noch mal"
         ],
-        DEPARTAMENT: [
-            "Ihr Departament befindet sich %s"
+        NAME: [
+            "Hallo %s", "HHHHAAAAI"
         ],
         UNDEFINED: [
             "Nicht verstanden"

@@ -2,5 +2,5 @@
 
 module.exports = {
     NONE: '',
-    DEPARTMENT: '_DEPARTMENT'
+    NAME: '_NAME'
 };
