@@ -44,6 +44,11 @@ module.exports = {
         this.handler.state = States.NAME;
         this.emitWithState('nameIntent');
     },
+    // Custom Intents:
+    'recipeIntent': function() {
+        this.handler.state = States.RECIPE;
+        this.emitWithState('recipeIntent');
+    },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")
             .listen("do you want something elsee?");
