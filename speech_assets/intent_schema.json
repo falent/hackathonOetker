@@ -44,12 +44,7 @@
           ]
         }
       ],
-      "types": [
-        {
-          "name": "RECIPE",
-          "values": []
-        }
-      ]
+      "types": []
     }
   }
 }
