@@ -8,11 +8,19 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
 
     'recipeIntent': function() {
 
+        var request = require('request');
+        request('http://www.google.com', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body) // Print the google web page.
+                this.response.speak(body)
+                    .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+
+                this.emit(':responseReady');
+            }
+        })
+
         
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('RECIPE', myName)))
-        .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
-        
-        this.emit(':responseReady');
+
     },
 
     // Unhandled Intent:
