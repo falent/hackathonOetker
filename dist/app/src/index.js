@@ -10,7 +10,8 @@ const recipeHandlers = require('./alexa/handlers/recipe.handlers');
 
 var allHandlers = [
 	newSessionHandlers,
-    nameHandlers
+    nameHandlers,
+    recipeHandlers
 
 ];
 
