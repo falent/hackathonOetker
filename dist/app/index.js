@@ -61,27 +61,6 @@ const app = express();
 
  });
 
-    var fs = require("fs");
-
-
-
-
-    const updateJsonFile = require('update-json-file')
-
-    const filePath = './../../skill.json'
-
-    updateJsonFile(filePath, (data) => {
-        var contents = fs.readFileSync("address.json");
-        var jsonContent = JSON.parse(contents);
-        console.log("Address", jsonContent['tunnels'][1]['public_url']);
-        data['manifest']['apis']['custom']['endpoint']['uri'] = jsonContent['tunnels'][1]['public_url'];
-        data['manifest']['apis']['custom']['regions']['EU']['endpoint']['uri'] =jsonContent['tunnels'][1]['public_url'];
-        return data
-    });
-
-    var contents = fs.readFileSync("./../../skill.json");
-
-    var jsonContent = JSON.parse(contents);
     
         app.use(bodyParser.json({ type: "application/json" }));
         app.use("/", alexa_adapter.default);
