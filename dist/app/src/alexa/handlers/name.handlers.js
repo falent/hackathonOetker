@@ -6,7 +6,7 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 module.exports = Alexa.CreateStateHandler(States.NAME, {
 
-    'NameIntent': function() {
+    'nameIntent': function() {
         var myName = this.event.request.intent.slots.name.value;
         
         this.response.speak(SpeechOutputUtils.pickRandom(this.t('NAME', myName)))

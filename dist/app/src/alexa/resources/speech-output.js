@@ -8,7 +8,7 @@ module.exports = {
           REPEAT: [
               "Could you please repeat?"
           ],
-          DEPARTAMENT: [
+          NAME: [
               "you are looking for a departament %s"
           ],
           UNDEFINED: [

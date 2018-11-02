@@ -31,24 +31,18 @@ module.exports = {
 
     'LaunchIntent': function() {
 
-        this.response.speak("Alexa will say that ")
-            .listen("and repeat after 8 seconds this if she doesnt get your answer");
 
-        this.emit(':responseReady');
-
-/*
-        This code is if you would like to use multilanguage and random function
 
         this.response.speak(SpeechOutputUtils.pickRandom(this.t('WELCOME')))
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
-        this.emit(':responseReady');*/
+        this.emit(':responseReady');
 
 
     },
     // Custom Intents:
-    'NameIntent': function() {
+    'nameIntent': function() {
         this.handler.state = States.NAME;
-        this.emitWithState('NameIntent');
+        this.emitWithState('nameIntent');
     },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")
