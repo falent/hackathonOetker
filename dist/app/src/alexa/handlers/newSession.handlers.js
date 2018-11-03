@@ -127,5 +127,21 @@ module.exports = {
         this.response.speak("sdsdsd").listen("sss");
         this.emit(':responseReady');
 
+    },
+
+    'addProductIntent': function () {
+
+        var userId = this.event.session.user.userId;
+        var myFood = this.event.request.intent.slots.food.value;
+
+        var post  = {id: null, userId: userId, ingredient: myFood };
+        var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+            if (error) throw error;
+            // Neat!
+        });
+
+        this.emit(':ask', "Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!");
+
+
     }
 };
