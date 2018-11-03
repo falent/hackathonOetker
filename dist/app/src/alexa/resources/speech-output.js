@@ -32,38 +32,38 @@ module.exports = {
   "de-DE": {
     translation: {
         WELCOME_NAME: [
-            "Hallo %s, welchen Rezept brauchst du?", "Hallo %s, wie welchen Rezept brauchst du?"
+            "welches Rezept brauchst du?"
         ],
 
         WELCOME_WITHOUT_NAME: [
-            "Ich höre dich zum ersten Mal, Könnten Sie sagen wie sie heißen"
+            "Ich höre dich zum ersten Mal, Kannst du mir sagen, wie du heißt"
         ],
         WELCOME_TEMPORAL: [
-            "Hallo, wie kann ich Ihnen dienen"
+            "wie kann ich dir helfen"
         ],
         REPEAT: [
-            "Sagen Sie es noch mal"
+            "Sag es bitte noch mal", "Bitte wiederhole dies nochmal"
         ],
         NAME: [
             "Hallo %s", "HHHHAAAAI"
         ],
         UNDEFINED: [
-            "Nicht verstanden"
+            "Ich habe es nicht verstanden"
         ],
         HELP_DEPARTAMENT: [
             "Ordnung muss sein"
         ],
         HELP: [
-            "Sie können fragen, welche Temperature in Tomas Zimmer gibt"
+            "Du kannst mich nach einem Rezept fragen. Ich lese es dir vor und unterstütze dich beim Zubereiten."
         ],
         STOP_ANSWER: [
-            "Ich habe den Skill gestoppt"
+            "Ich habe den Skill gestoppt. Bis bald"
         ],
         CANCEL_ANSWER: [
-            "Sie haben den Skill abgebrochen"
+            "Du hast den Skill abgebrochen, bis zum nächsten Mal"
         ],
         RECIPE: [
-            "Welche Rezepte brauchen Sie?"
+            "Welche Rezepte brauchst du?", "Wofür möchtest du ein Rezept haben?", "Nach welchem Rezept suchst du?"
         ],
         COOK: [
             "Schritt %s"
@@ -72,6 +72,15 @@ module.exports = {
             "Du brauchst %s"
         ],
         MORE: [
+
+            "Möchtest du alles bei Dr Oetker online bestellen?"
+        ],
+        GREETINGS: [
+            "Hi %s", "Hallo %s", "Hi", "Hallo"
+        ],
+        SHOPPINGLIST: [
+            "Soll ich die fehlenden Zutaten auf deine Einkaufsliste schreiben?",
+
             "Möchten Sie alles bei Dr Oetker online bestellen?"
         ],
         SHOPPING_QUESTION: [

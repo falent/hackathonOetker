@@ -53,45 +53,74 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             return initializePromise.then(function(result) {
 
 
-                const steps = result.PreparationBlocks.sort(function(a, b){return a.SortOrder-b.SortOrder});
-                console.log('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
-                console.log(steps);
-                /*
-                self.emit(':ask', "Es geht "+steps[0].Body );
-                self.emit(':responseReady')*/
 
 
 
-                var i;
-                var j;
-                var all = "";
+
+
+                var ingredients = connection.query('SELECT ingredient FROM ingredients WHERE userid=?', [userId],function (error, results) {
+
+                    if (error) throw error;
+
+                    var ingredientsArray = [];
 
 
 
-                for (j = 0; j < result.IngredientBlocks.length; j++) {
+                    var k;
+                    for (k = 0; k < results.length; k++) {
+
+
+                        ingredientsArray.push(JSON.parse(JSON.stringify(results))[k].ingredient);
+
+                    }
 
 
 
-                    all += " "+result.IngredientBlocks[j].Title;
+
+                    var i;
+                    var j;
+                    var all = "";
 
 
-                for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
+
+                    for (j = 0; j < result.IngredientBlocks.length; j++) {
 
 
-                    all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
 
-                }
-                }
-
-                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker bestellen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+                        all += " "+result.IngredientBlocks[j].Title;
 
 
-                self.emit(':responseReady');
+                        for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
+
+
+                            console.log(result.IngredientBlocks[j].Ingredients[i].Text);
+                            console.log(ingredientsArray.includes(result.IngredientBlocks[j].Ingredients[i].Text));
+                            all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
+
+                        }
+                    }
+
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+
+
+                    self.emit(':responseReady');
+
+                }, function(err) {
+                    console.log(err);
+                })
+
+
+
 
 
             }, function(err) {
                 console.log(err);
             })
+
+
+
+
+
 
 
         });
@@ -105,7 +134,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
-        
+
 
     },
 
@@ -131,12 +160,6 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
     'AMAZON.StopIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.StopIntent');
-    },
-
-    'AMAZON.NoIntent': function() {
-        this.handler.state = States.COOKSTEPS;
-        console.log('LETS COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK');
-        this.emitWithState('cookstepsIntent');
     },
 
     'AMAZON.CancelIntent': function () {

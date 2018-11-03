@@ -44,6 +44,15 @@ module.exports = Alexa.CreateStateHandler(States.SHOPPING, {
 
     },
 
+    'shoppingIntent': function() {
+
+        var self = this;
+        self.response.speak(SpeechOutputUtils.pickRandom(self.t('SHOPPING_QUESTION'))).listen(SpeechOutputUtils.pickRandom(self.t('SHOPPING_QUESTION')));
+
+        self.emit(':responseReady');
+
+    },
+
     // Unhandled Intent:
 
     'Unhandled': function () {
