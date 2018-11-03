@@ -65,6 +65,7 @@
         },
         {
           "name": "buddyIntent",
+          "slots": [],
           "samples": [
             "Hilfe mein Kuchen ist zu trocken",
             "Ich habe einen trockenen Kuchen ich brauche Hilfe"
@@ -74,6 +75,7 @@
           "name": "deleteProductsIntent",
           "slots": [],
           "samples": [
+            "weg damit",
             "weg mit alles"
           ]
         },
