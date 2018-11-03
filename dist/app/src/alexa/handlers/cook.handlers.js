@@ -54,35 +54,73 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
-                var i;
-                var j;
-                var all = "";
 
 
 
-                for (j = 0; j < result.IngredientBlocks.length; j++) {
+
+                var ingredients = connection.query('SELECT ingredient FROM ingredients WHERE userid=?', [userId],function (error, results) {
+
+                    if (error) throw error;
+
+                    var ingredientsArray = [];
 
 
 
-                    all += " "+result.IngredientBlocks[j].Title;
+                    var k;
+                    for (k = 0; k < results.length; k++) {
 
 
-                for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
+                        ingredientsArray.push(JSON.parse(JSON.stringify(results))[k].ingredient);
+
+                    }
 
 
-                    all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
-
-                }
-                }
-
-                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
 
 
-                self.emit(':responseReady');
+                    var i;
+                    var j;
+                    var all = "";
+
+
+
+                    for (j = 0; j < result.IngredientBlocks.length; j++) {
+
+
+
+                        all += " "+result.IngredientBlocks[j].Title;
+
+
+                        for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
+
+
+                            console.log(result.IngredientBlocks[j].Ingredients[i].Text);
+                            console.log(ingredientsArray.includes(result.IngredientBlocks[j].Ingredients[i].Text));
+                            all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
+
+                        }
+                    }
+
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+
+
+                    self.emit(':responseReady');
+
+                }, function(err) {
+                    console.log(err);
+                })
+
+
+
+
 
             }, function(err) {
-                console.log(err);
-            })
+                        console.log(err);
+                    })
+
+
+
+
+
 
 
         });
