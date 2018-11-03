@@ -139,9 +139,9 @@ module.exports = {
     },
     'renderImageIntent': function () {
         const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
-        const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://imgs.xkcd.com/comics/standards.png'))
+        const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png'))
             .setBackButtonBehavior('HIDDEN')
-            .setImage(Alexa.utils.ImageUtils.makeImage('https://imgs.xkcd.com/comics/standards.png'))
+            .setImage(Alexa.utils.ImageUtils.makeImage('https://recipecloud-data.td-asp.com/recipes_de/recipe_D199D2ACC927305EC125735600413A25/recipe.jpeg'))
             .build();
 
         this.response.speak('Rendering a template!')
