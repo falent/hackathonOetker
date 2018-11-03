@@ -90,8 +90,12 @@ module.exports = {
         this.emitWithState('recipeIntent');
     },
     'cookIntent': function() {
-        this.handler.state = States.RECIPE;
+        this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
+    },
+    'cookstepsIntent': function() {
+        this.handler.state = States.COOKSTEPS;
+        this.emitWithState('cookstepsIntent');
     },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")
