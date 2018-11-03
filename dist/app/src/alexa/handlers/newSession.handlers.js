@@ -73,7 +73,9 @@ module.exports = {
                         if (results[i].userId === userId) {
 
                             console.log(results[i].name);
-                            output = SpeechOutputUtils.pickRandom(self.t('WELCOME_NAME', results[i].name));
+
+
+                            output = SpeechOutputUtils.pickRandom(self.t('GREETINGS', results[i].name))+" "+SpeechOutputUtils.pickRandom(self.t('WELCOME_NAME'));
                             break;
                         }else {
                             output = SpeechOutputUtils.pickRandom(self.t('WELCOME_WITHOUT_NAME'));
@@ -99,7 +101,7 @@ module.exports = {
         this.emitWithState('recipeIntent');
     },
     'cookIntent': function() {
-        this.handler.state = States.RECIPE;
+        this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
     },
     'ContactIntent': function() {
@@ -111,7 +113,7 @@ module.exports = {
     // Built-In Intents:
 
     'AMAZON.HelpIntent': function () {
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('HELP')).listen(this.t('REPEAT')));
+        this.response.speak(SpeechOutputUtils.pickRandom(this.t('HELP')));
         this.emit(':responseReady');
 
     },

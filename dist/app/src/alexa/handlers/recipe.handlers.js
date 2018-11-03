@@ -121,5 +121,10 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     'AMAZON.YesIntent' : function () {
         this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
+    },
+    //OTHERS
+    'shoppingListIntent': function() {
+        this.handler.state = States.SHOPPINGLIST;
+        this.emitWithState(':shoppingListIntent');
     }
 });
