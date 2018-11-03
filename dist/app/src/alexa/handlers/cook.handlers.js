@@ -100,14 +100,22 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                         }
                     }
 
-                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
 
 
                     self.emit(':responseReady');
 
+                }, function(err) {
+                    console.log(err);
+                })
+
+
+
+
+
             }, function(err) {
-                        console.log(err);
-                    })
+                console.log(err);
+            })
 
 
 
@@ -126,7 +134,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
-        
+
 
     },
 
@@ -152,12 +160,6 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
     'AMAZON.StopIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.StopIntent');
-    },
-
-    'AMAZON.NoIntent': function() {
-        this.handler.state = States.COOKSTEPS;
-        console.log('LETS COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK');
-        this.emitWithState('cookstepsIntent');
     },
 
     'AMAZON.CancelIntent': function () {
