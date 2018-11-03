@@ -18,11 +18,11 @@ function initialize(recipe) {
     }
     if (recipe.difficulty != undefined){
         if (recipe.name != undefined) url += "%20AND%20";
-        url += "difficulty:"+recipe.difficulty.resolutionsPerAuthority[0].values[0].value.id;
+        url += "difficulty:"+recipe.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id;
     }
     if (recipe.category != undefined) {
         if (recipe.name != undefined || recipe.difficulty != undefined) url += "%20AND%20";
-        url += "category:"+recipe.category.resolutionsPerAuthority[0].values[0].value.id;
+        url += "category:"+recipe.category.resolutions.resolutionsPerAuthority[0].values[0].value.id;
     }
     var options = {
         //url: 'https://recipecloud-search.td-asp.com/recipes_de/_search?q=title:Erdbeer%20AND%20category:baking',
@@ -51,9 +51,9 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         var myRecipe = {
             name : this.event.request.intent.slots.recipeName.value,
             //difficulty : this.event.request.intent.slots.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id,
-            difficulty : this.event.request.intent.slots.difficulty.resolutions,
+            difficulty : this.event.request.intent.slots.difficulty,
             //category : this.event.request.intent.slots.category.resolutions.resolutionsPerAuthority[0].values[0].value.id
-            category : this.event.request.intent.slots.category.resolutions
+            category : this.event.request.intent.slots.category
         }
         //if (myRecipe.difficulty != undefined)
         console.log(myRecipe.name + " NAME");
@@ -97,9 +97,10 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     'AMAZON.YesIntent' : function () {
         console.log('CHEEEEEEEEEEECK');
         this.handler.state = States.NONE;
-        this.emitthis.response.speak('Lass uns kochen')
+        this.response.speak('Lass uns kochen')
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
+        this.emit('AMAZON.YesIntent');
         this.emit(':responseReady');
     }
 });
