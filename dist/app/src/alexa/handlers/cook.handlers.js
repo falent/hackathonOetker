@@ -206,7 +206,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             // Neat!
         });
 
-        this.emit(':ask', "Ich habe alle produkte weggeschissen!");
+        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/aaU4YRxc-output1.mp3' /> aber ich habe alle produkte weggeschissen!");
     },
 
     'addProductIntent': function () {
@@ -238,7 +238,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             });
 
         }
-        this.emit(':ask', "Ich habe sie hinzufügt "+ myArray.join());
+        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/VEYqi8zP-output.mp3' /> Ich habe sie hinzufügt" + myArray.join());
     }
 
 });
