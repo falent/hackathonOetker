@@ -67,6 +67,12 @@ module.exports = {
         ],
         COOK: [
             "Schritt %s"
+        ],
+        COOK_INGREDIENTS: [
+            "Du brauchst %s"
+        ],
+        MORE: [
+            "Möchten Sie alles bei Dr Oetker online bestellen?"
         ]
     }
   }

@@ -4,13 +4,14 @@ const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 
+
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'sql7.freemysqlhosting.net',
-    user     : 'sql7264034',
-    password : 'gftjXBkx6Y',
+    host     : 'sql2.freemysqlhosting.net',
+    user     : 'sql2264064',
+    password : 'wI4%lS9%',
     port : '3306',
-    database : 'sql7264034'
+    database : 'sql2264064'
 
 });
 
