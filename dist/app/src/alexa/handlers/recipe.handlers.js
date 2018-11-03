@@ -4,16 +4,8 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');var request = 
 
 
 var request = require("request");
+const connection = require('../models/con');
 
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'sql2.freemysqlhosting.net',
-    user     : 'sql2264064',
-    password : 'wI4%lS9%',
-    port : '3306',
-    database : 'sql2264064'
-
-});
 
 
 
