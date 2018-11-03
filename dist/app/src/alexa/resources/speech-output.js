@@ -76,7 +76,7 @@ module.exports = {
             "Möchtest du alles bei Dr Oetker online bestellen?"
         ],
         GREETINGS: [
-            "Hi %s", "Hallo %s", "Hi", "Hallo"
+            "Hi %s", "Hallo %s", "Hi %s", "Hallo %s"
         ],
         SHOPPINGLIST: [
             "Soll ich die fehlenden Zutaten auf deine Einkaufsliste schreiben?",
