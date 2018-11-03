@@ -185,7 +185,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
     'AMAZON.ResumeIntent':function () {
         console.log('RESUME');
         this.handler.state = States.COOKSTEPS;
-        this.emit('AMAZON.ResumeIntent');
+        this.emit('AMAZON.RepeatIntent');
         this.emit(':responseReady');
     }
 
