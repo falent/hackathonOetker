@@ -8,12 +8,14 @@ const newSessionHandlers = require('./alexa/handlers/newSession.handlers');
 const nameHandlers = require('./alexa/handlers/name.handlers');
 const recipeHandlers = require('./alexa/handlers/recipe.handlers');
 const cookHandlers = require('./alexa/handlers/cook.handlers');
+const cookstepsHandlers = require('./alexa/handlers/cooksteps.handlers');
 
 var allHandlers = [
 	newSessionHandlers,
     nameHandlers,
     recipeHandlers,
-    cookHandlers
+    cookHandlers,
+    cookstepsHandlers
 ];
 
 

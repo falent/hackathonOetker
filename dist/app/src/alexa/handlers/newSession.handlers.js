@@ -9,11 +9,11 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'sql7.freemysqlhosting.net',
-    user     : 'sql7264034',
-    password : 'gftjXBkx6Y',
+    host     : 'sql2.freemysqlhosting.net',
+    user     : 'sql2264064',
+    password : 'wI4%lS9%',
     port : '3306',
-    database : 'sql7264034'
+    database : 'sql2264064'
 
 });
 
@@ -99,8 +99,12 @@ module.exports = {
         this.emitWithState('recipeIntent');
     },
     'cookIntent': function() {
-        this.handler.state = States.RECIPE;
+        this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
+    },
+    'cookstepsIntent': function() {
+        this.handler.state = States.COOKSTEPS;
+        this.emitWithState('cookstepsIntent');
     },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")
