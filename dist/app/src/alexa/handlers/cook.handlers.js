@@ -67,7 +67,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                 var j;
                 var all = "";
 
-                console.log(result);
+
 
                 for (j = 0; j < result.IngredientBlocks.length; j++) {
 
@@ -84,10 +84,11 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                 }
                 }
 
+                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
 
 
-                this.response.speak(SpeechOutputUtils.pickRandom(this.t('COOK_INGREDIENTS', all)+" "+(this.t('MORE'))))
-                    .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT'))).cardRender("Card Title", "cardContent");
+                self.emit(':responseReady');
+
             }, function(err) {
                 console.log(err);
             })

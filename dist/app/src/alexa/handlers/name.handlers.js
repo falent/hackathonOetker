@@ -37,7 +37,7 @@ module.exports = Alexa.CreateStateHandler(States.NAME, {
 
 
 
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('NAME', '1')))
+        this.response.speak(SpeechOutputUtils.pickRandom(this.t('NAME', myName)))
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
         this.emit(':responseReady');
