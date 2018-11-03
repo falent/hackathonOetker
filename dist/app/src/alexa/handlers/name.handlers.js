@@ -77,6 +77,11 @@ module.exports = Alexa.CreateStateHandler(States.NAME, {
     'AMAZON.CancelIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.CancelIntent');
+    },
+    // Custom Intents:
+    'recipeIntent': function() {
+        this.handler.state = States.RECIPE;
+        this.emitWithState('recipeIntent');
     }
 
 });
