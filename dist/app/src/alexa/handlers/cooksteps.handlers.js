@@ -48,7 +48,9 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
         var self = this;
 
 
-        var userId = this.event.session.user.userId;
+
+        var userId = self.event.session.user.userId;
+
 
         var link = connection.query('SELECT json, state  FROM names WHERE userid=?', [userId],function (error, results) {
 
@@ -58,6 +60,10 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
             var json = JSON.parse(JSON.stringify(results))[0].json;
             var state = JSON.parse(JSON.stringify(results))[0].state;
+            connection.query('UPDATE names SET state = ? WHERE userid = ?', [''+(++state), userId], function (error, results) {
+                if (error) throw error;
+                console.log('!DATABANK UPDATE!');
+            });
             console.log('STAAAAAAAAAAAAAAAATE');
             console.log(state);
             var initializePromise = initialize(json);
@@ -67,6 +73,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
                 const steps = result.PreparationBlocks.sort(function(a, b){return a.SortOrder-b.SortOrder});
                 console.log('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
                 console.log(steps);
+                //console.log(++state);
                 /*
                 self.emit(':ask', "Es geht "+steps[0].Body );
                 self.emit(':responseReady')*/
@@ -125,6 +132,12 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
     'AMAZON.CancelIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.CancelIntent');
+    },
+
+    'AMAZON.NextIntent' : function () {
+        console.log('NEEEEEEEEEEEEEEEEEEEEEEEEEEEXT STEEEEEEEEEP');
+        this.handler.state = States.COOKSTEPS;
+        this.emit('cookstepsIntent');
     }
 
 });
