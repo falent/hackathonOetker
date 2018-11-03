@@ -53,11 +53,6 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             return initializePromise.then(function(result) {
 
 
-
-
-
-
-
                 var ingredients = connection.query('SELECT ingredient FROM ingredients WHERE userid=?', [userId],function (error, results) {
 
                     if (error) throw error;
@@ -153,8 +148,8 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
     },
 
     'AMAZON.NoIntent': function() {
-        this.handler.state = States.NONE;
-        this.emit('AMAZON.CancelIntent');
+        this.handler.state = States.COOKSTEPS;
+        this.emit('cookstepsIntent');
     },
 
     'AMAZON.StopIntent': function () {
