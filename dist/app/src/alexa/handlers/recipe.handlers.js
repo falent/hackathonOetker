@@ -5,6 +5,19 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');var request = 
 
 var request = require("request");
 
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : 'sql7.freemysqlhosting.net',
+    user     : 'sql7264034',
+    password : 'gftjXBkx6Y',
+    port : '3306',
+    database : 'sql7264034'
+
+});
+
+
+
+
 
 
 
@@ -16,12 +29,12 @@ function initialize(recipe) {
         url += "title:"+recipe.name;
 
     }
-    if (recipe.difficulty != undefined){
+    if (recipe.difficulty.resolutions != undefined){
         if (recipe.name != undefined) url += "%20AND%20";
         url += "difficulty:"+recipe.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id;
     }
-    if (recipe.category != undefined) {
-        if (recipe.name != undefined || recipe.difficulty != undefined) url += "%20AND%20";
+    if (recipe.category.resolutions != undefined) {
+        if (recipe.name != undefined || recipe.difficulty.resolutions != undefined) url += "%20AND%20";
         url += "category:"+recipe.category.resolutions.resolutionsPerAuthority[0].values[0].value.id;
     }
     var options = {
@@ -62,6 +75,15 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         var initializePromise = initialize(myRecipe );
         return initializePromise.then(function(result) {
             console.log(result);
+
+                var userId = self.event.context.System.user.userId;
+                connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', result.hits.hits[0]._source.recipe, userId], function (error, results) {
+                    if (error) throw error;
+                    console.log('!DATABANK UPDATE!');
+                });
+
+
+
             self.emit(':ask', "Ich habe  "+result.hits.total+" Rezepte gefunden. Möchtest du "+result.hits.hits[0]._source.title+" kochen?" );
             self.emit(':responseReady');
             }, function(err) {
@@ -96,11 +118,9 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     
     'AMAZON.YesIntent' : function () {
         console.log('CHEEEEEEEEEEECK');
-        this.handler.state = States.NONE;
         this.response.speak('Lass uns kochen')
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
-        this.emit('AMAZON.YesIntent');
         this.emit(':responseReady');
     }
 });

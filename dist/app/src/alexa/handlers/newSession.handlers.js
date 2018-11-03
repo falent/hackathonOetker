@@ -57,13 +57,17 @@ module.exports = {
         var self = this;
         var output = "";
 
+        console.log('CAME IN');
         connection.query('SELECT * FROM names', function (error, results) {
             if (error) throw error;
-
+            console.log('START HERE');
             var userId = self.event.context.System.user.userId;
                     var i;
+
+            console.log(userId + ' userid');
                     for (i = 0; i < results.length; i++) {
 
+                        console.log(results[i].userId + ' userid in res');
                         if (results[i].userId == userId) {
                             console.log("IT IS TRUE!");
                             console.log(results[i].name);
