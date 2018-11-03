@@ -4,27 +4,28 @@ const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 
-/*
-TODO at the end uncomment
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'dupa',
-    database : 'oetker'
+    host     : 'sql7.freemysqlhosting.net',
+    user     : 'sql7264034',
+    password : 'gftjXBkx6Y',
+    port : '3306',
+    database : 'sql7264034'
+
 });
-*/
 
 
 module.exports = Alexa.CreateStateHandler(States.NAME, {
 
     'nameIntent': function() {
-/*
+
 
         var myName = this.event.request.intent.slots.name.value;
         var userId = this.event.context.System.user.userId;
+        var state = "";
+        var json = "";
 
-        var post  = {id: null, name: myName, userId: userId};
+        var post  = {id: null, name: myName, userId: userId, state: state, json: json};
         var query = connection.query('INSERT INTO names SET ?', post, function (error, results, fields) {
             if (error) throw error;
             // Neat!
@@ -37,8 +38,7 @@ module.exports = Alexa.CreateStateHandler(States.NAME, {
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
         this.emit(':responseReady');
-*/      this.response.speak(SpeechOutputUtils.pickRandom(this.t('WELCOME_TEMPORAL'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
-        this.emit(':responseReady');
+
 
 
 

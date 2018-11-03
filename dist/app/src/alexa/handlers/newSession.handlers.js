@@ -6,18 +6,19 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 
 
-/*
-TODO at the end uncomment
+
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'dupa',
-    database : 'oetker'
+    host     : 'sql7.freemysqlhosting.net',
+    user     : 'sql7264034',
+    password : 'gftjXBkx6Y',
+    port : '3306',
+    database : 'sql7264034'
+
 });
 
 
-*/
+
 
 
 
@@ -51,8 +52,7 @@ module.exports = {
 
 
 
-/*
-TODO at the end uncomment
+
 
         var self = this;
         var output = "";
@@ -63,8 +63,10 @@ TODO at the end uncomment
             var userId = self.event.context.System.user.userId;
                     var i;
                     for (i = 0; i < results.length; i++) {
-                        console.log('The solution is: ', results[i]);
-                        if (results[i].userId === userId) {
+
+                        if (results[i].userId == userId) {
+                            console.log("IT IS TRUE!");
+                            console.log(results[i].name);
                             output = SpeechOutputUtils.pickRandom(self.t('WELCOME_NAME', results[i].name));
                             break;
                         }else {
@@ -77,8 +79,7 @@ TODO at the end uncomment
 
 
         });
-*/      this.response.speak(SpeechOutputUtils.pickRandom(this.t('WELCOME_TEMPORAL'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
-        this.emit(':responseReady');
+
 
 },
     // Custom Intents:
