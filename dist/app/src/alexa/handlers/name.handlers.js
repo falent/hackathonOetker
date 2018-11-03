@@ -21,9 +21,11 @@ module.exports = Alexa.CreateStateHandler(States.NAME, {
 
 
         var myName = this.event.request.intent.slots.name.value;
-        var userId = this.event.context.System.user.userId;
+        var userId = this.event.session.user.userId;
         var state = "";
         var json = "";
+        console.log("THIS IS USERID")
+        console.log(userId);
 
         var post  = {id: null, name: myName, userId: userId, state: state, json: json};
         var query = connection.query('INSERT INTO names SET ?', post, function (error, results, fields) {

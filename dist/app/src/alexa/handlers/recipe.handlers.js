@@ -76,7 +76,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         return initializePromise.then(function(result) {
             console.log(result);
 
-                var userId = self.event.context.System.user.userId;
+            var userId = self.event.session.user.userId;
                 connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', result.hits.hits[0]._source.recipe, userId], function (error, results) {
                     if (error) throw error;
                     console.log('!DATABANK UPDATE!');

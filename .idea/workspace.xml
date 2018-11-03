@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b78cd7a8-0f64-470a-81dc-8e78732ed125" name="Default" comment="Merge branch 'master' of https://github.com/falent/Alexa_universal_skill_template_cli&#10;&#10;# Conflicts:&#10;#&#9;alexa_linux_start.sh">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/resources/speech-output.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/resources/speech-output.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="20" />
+            <state relative-caret-position="349">
+              <caret line="63" column="12" lean-forward="true" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -65,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+            <state relative-caret-position="334">
+              <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -75,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="555">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -251,7 +252,7 @@
       <workItem from="1518458337573" duration="43000" />
       <workItem from="1518461501860" duration="253000" />
       <workItem from="1518509199145" duration="171000" />
-      <workItem from="1541185605985" duration="25962000" />
+      <workItem from="1541185605985" duration="26109000" />
     </task>
     <task id="LOCAL-00001" summary="changed automated script.">
       <created>1518461651023</created>
@@ -264,7 +265,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26429000" />
+    <option name="totallyTimeSpent" value="26576000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -361,7 +362,7 @@
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
@@ -374,15 +375,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="20" />
+        <state relative-caret-position="349">
+          <caret line="63" column="12" lean-forward="true" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="122" lean-forward="true" selection-start-line="122" selection-end-line="122" />
+        <state relative-caret-position="334">
+          <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
         </state>
       </provider>
     </entry>
