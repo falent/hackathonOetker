@@ -15,6 +15,9 @@ var connection = mysql.createConnection({
 
 });
 
+var position = 0;
+var last = 0;
+
 
 function initialize(link) {
 
@@ -44,12 +47,22 @@ function initialize(link) {
 
 module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
+
     'cookstepsIntent': function() {
         var self = this;
 
 
 
+
         var userId = self.event.session.user.userId;
+
+        console.log('THIS.POSITION ' + this.position);
+        console.log('THIS.POSITION ' + position);
+
+        connection.query('UPDATE names SET state = ? WHERE userid = ?', [position, userId], function (error, results) {
+            if (error) throw error;
+            console.log('!DATABANK UPDATE!');
+        });
 
 
         var link = connection.query('SELECT json, state  FROM names WHERE userid=?', [userId],function (error, results) {
@@ -60,10 +73,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
             var json = JSON.parse(JSON.stringify(results))[0].json;
             var state = JSON.parse(JSON.stringify(results))[0].state;
-            connection.query('UPDATE names SET state = ? WHERE userid = ?', [''+(++state), userId], function (error, results) {
-                if (error) throw error;
-                console.log('!DATABANK UPDATE!');
-            });
+
             console.log('STAAAAAAAAAAAAAAAATE');
             console.log(state);
             var initializePromise = initialize(json);
@@ -73,7 +83,8 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
                 const steps = result.PreparationBlocks.sort(function(a, b){return a.SortOrder-b.SortOrder});
                 console.log('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff');
                 console.log(steps);
-                //console.log(++state);
+                last = steps.length-1;
+                    //console.log(++state);
                 /*
                 self.emit(':ask', "Es geht "+steps[0].Body );
                 self.emit(':responseReady')*/
@@ -91,17 +102,6 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
 
         });
-
-
-
-
-
-
-
-
-
-
-        
 
     },
 
@@ -134,10 +134,61 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
         this.emit('AMAZON.CancelIntent');
     },
 
+    'AMAZON.PreviousIntent': function () {
+        console.log('PREVIOS STEEEEEEEEEP');
+        if (position == 0) {
+            this.response.speak("Das ist der erste Schritt.").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+
+            this.emit(':responseReady');
+
+        } else {
+            position--;
+            this.handler.state = States.COOKSTEPS;
+            this.emit('cookstepsIntent');
+        }
+    },
+
     'AMAZON.NextIntent' : function () {
-        console.log('NEEEEEEEEEEEEEEEEEEEEEEEEEEEXT STEEEEEEEEEP');
+        console.log('NEEEEEEEEEEEEEEEEEEEEXT STEEEEEEEEEP');
+        if (position == last) {
+            this.response.speak("Das ist der letzte Schritt.").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+            this.emit(':responseReady');
+
+        } else {
+            position++;
+            this.handler.state = States.COOKSTEPS;
+            this.emit('cookstepsIntent');
+
+        }
+    },
+
+    'AMAZON.RepeatIntent' : function () {
+        console.log('REPEAAAAAAAAAAAAT');
         this.handler.state = States.COOKSTEPS;
         this.emit('cookstepsIntent');
+
+    },
+
+    'AMAZON.StartOverIntent':function() {
+        console.log('START OVEEEEER');
+        this.handler.state = States.COOKSTEPS;
+        this.emit('cookstepsIntent');
+    },
+
+    'AMAZON.PauseIntent' : function () {
+        console.log('PAUSE');
+        this.handler.state = States.COOKSTEPS;
+        this.emit('AMAZON.PauseIntent');
+        this.emit(':responseReady');
+    },
+
+    'AMAZON.ResumeIntent':function () {
+        console.log('RESUME');
+        this.handler.state = States.COOKSTEPS;
+        this.emit('AMAZON.ResumeIntent');
+        this.emit(':responseReady');
     }
+
+
 
 });

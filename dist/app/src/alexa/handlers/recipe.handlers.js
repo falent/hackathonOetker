@@ -52,7 +52,7 @@ function initialize(recipe) {
     })
 }
 
-module.exports = Alexa.CreateStateHandler(States.RECIPE, {
+module.exports = Alexa.CreateStateHandler(States.RECIPE,{
 
 
     'recipeIntent': function() {
@@ -75,7 +75,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
 
             var curRecipe = result.hits.hits[i];
             var userId = self.event.session.user.userId;
-            connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['-1', curRecipe._source.recipe, userId], function (error, results) {
+            connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', curRecipe._source.recipe, userId], function (error, results) {
                 if (error) throw error;
                 console.log('!DATABANK UPDATE!');
             });
@@ -89,6 +89,8 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
                 console.log(err);
             })
     },
+
+
     // Unhandled Intent:
 
     'Unhandled': function () {
@@ -96,11 +98,11 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         this.handler.state = States.NONE;
         this.emit('Unhandled'); // emit in newSession handlers
     },
+
     // Built-In Intents:
     'AMAZON.HelpIntent': function () {
 
-        this.handler.state = States.NONE;
-        this.emit(':ask', SpeechOutputUtils.pickRandom(this.t('HELP')));
+        this.emit(':ask', "");
     },
     'AMAZON.NoIntent': function() {
         this.handler.state = States.RECIPE;
@@ -124,5 +126,12 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     'shoppingListIntent': function() {
         this.handler.state = States.SHOPPINGLIST;
         this.emitWithState(':shoppingListIntent');
-    }
+    },
+'buddyIntent' : function(){
+    //this.handler.state = States.RECIPE;
+    this.response.speak(SpeechOutputUtils.pickRandom(this.t('BUDDY_PROBLEM'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+    this.emit(':responseReady');
+}
+
+
 });

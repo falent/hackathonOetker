@@ -20,11 +20,31 @@
           "samples": []
         },
         {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.NoIntent",
           "samples": []
         },
         {
           "name": "AMAZON.NextIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PreviousIntent",
           "samples": []
         },
         {
@@ -41,6 +61,13 @@
           ],
           "samples": [
             "mein Name ist {name}"
+          ]
+        },
+        {
+          "name": "buddyIntent",
+          "samples": [
+            "Hilfe mein Kuchen ist zu trocken",
+            "Ich habe einen trockenen Kuchen ich brauche Hilfe"
           ]
         },
         {
