@@ -85,6 +85,9 @@ module.exports = {
         ],
         SHOPPING_QUESTION: [
             "Was wollen Sie bei Dr Oetker bestellen?"
+        ],
+        BUDDY_PROBLEM: [
+            "Versuche mit Zahnstochern rundum einzustechen und Fruchtsaft in die Löcher zu träufeln"
         ]
     }
   }

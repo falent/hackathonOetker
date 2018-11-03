@@ -40,6 +40,19 @@
           ]
         },
         {
+          "name": "buddyIntent",
+          "slots": [
+            {
+              "name": "problem",
+              "type": "MYPROBLEM"
+            }
+          ],
+          "samples": [
+            "Hilfe, mein Kuchen ist zu trocken",
+            "Ich habe einen trockenen Kuchen, ich brauche Hilfe"
+          ]
+        },
+        {
           "name": "recipeIntent",
           "slots": [
             {

@@ -52,7 +52,7 @@ function initialize(recipe) {
     })
 }
 
-module.exports = Alexa.CreateStateHandler(States.RECIPE, {
+module.exports = Alexa.CreateStateHandler(States.RECIPE,{
 
 
     'recipeIntent': function() {
@@ -96,6 +96,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         this.handler.state = States.NONE;
         this.emit('Unhandled'); // emit in newSession handlers
     },
+
     // Built-In Intents:
     'AMAZON.HelpIntent': function () {
 
@@ -124,5 +125,11 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     'shoppingListIntent': function() {
         this.handler.state = States.SHOPPINGLIST;
         this.emitWithState(':shoppingListIntent');
-    }
+    },
+'buddyIntent' : function(){
+    this.handler.state = States.RECIPE;
+    self.response.speak(listen(SpeechOutputUtils.pickRandom(self.t('BUDDY_PROBLEM'))));
+}
+
+
 });
