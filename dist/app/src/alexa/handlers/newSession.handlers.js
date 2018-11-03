@@ -3,8 +3,9 @@
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 const connection = require('../models/con');
+const Alexa = require('alexa-sdk');
 
-
+const RandomDate = require('../utils/random-date.utils');
 
 
 
@@ -73,6 +74,14 @@ module.exports = {
                         }
                     }
 
+
+
+
+
+
+
+
+
             self.response.speak(output).listen(self.t('REPEAT'));
             self.emit(':responseReady');
 
@@ -128,19 +137,32 @@ module.exports = {
         this.emit(':responseReady');
 
     },
+    'renderImageIntent': function () {
+        const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
+        const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://imgs.xkcd.com/comics/standards.png'))
+            .setBackButtonBehavior('HIDDEN')
+            .setImage(Alexa.utils.ImageUtils.makeImage('https://imgs.xkcd.com/comics/standards.png'))
+            .build();
+
+        this.response.speak('Rendering a template!')
+            .renderTemplate(template);
+        this.emit(':responseReady');
+
+    },
 
     'addProductIntent': function () {
 
         var userId = this.event.session.user.userId;
         var myFood = this.event.request.intent.slots.food.value;
+        var myDate = RandomDate('12-11-2018', '14-11-2018')
 
-        var post  = {id: null, userId: userId, ingredient: myFood };
+        var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
         var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
             if (error) throw error;
             // Neat!
         });
 
-        this.emit(':ask', "Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!");
+        this.emit(':ask', "Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar");
 
 
     }

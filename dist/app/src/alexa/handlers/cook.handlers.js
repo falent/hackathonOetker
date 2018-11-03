@@ -5,6 +5,7 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');
 var request = require("request");
 const connection = require('../models/con');
 var unique = require('array-unique');
+const RandomDate = require('../utils/random-date.utils');
 
 
 function initialize(link) {
@@ -213,14 +214,17 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
         var userId = this.event.session.user.userId;
         var myFood = this.event.request.intent.slots.food.value;
+        var myDate = RandomDate('12-11-2018', '14-11-2018')
 
-        var post  = {id: null, userId: userId, ingredient: myFood };
+        var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
         var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
             if (error) throw error;
             // Neat!
         });
 
-        this.emit(':ask', "Ich habe "+myFood+" hinzugefügt!");
+        this.emit(':ask', "Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar");
+
+
     },
 
 
