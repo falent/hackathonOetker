@@ -4,7 +4,7 @@ const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 var request = require("request");
 const connection = require('../models/con');
-
+var unique = require('array-unique');
 
 
 function initialize(link) {
@@ -36,6 +36,7 @@ function wordInString(s, word){
     return new RegExp( '\\b' + word + '\\b', 'i').test(s);
 }
 
+var ingredientsArrayToDatabase = [];
 
 module.exports = Alexa.CreateStateHandler(States.COOK, {
 
@@ -64,6 +65,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
                 var ingredients = connection.query('SELECT ingredient FROM ingredients WHERE userid=?', [userId],function (error, results) {
 
+                    ingredientsArrayToDatabase = [];
                     if (error) throw error;
 
                     var ingredientsArray = [];
@@ -111,7 +113,14 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                                     console.log(sentence);
                                     console.log(word);
                                     sentence = sentence+" es gibt"
+                                } else {
+
+                                    var sentenceNew = sentence.replace(/[0-9]/g, '');
+                                    ingredientsArrayToDatabase.push(sentenceNew);
+
                                 }
+
+
 
 
 
@@ -124,7 +133,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                         }
                     }
 
-                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
 
 
                     self.emit(':responseReady');
@@ -164,6 +173,10 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
     // Unhandled Intent:
 
+
+
+    // Unhandled Intent:
+
     'Unhandled': function () {
         this.handler.state = States.NONE;
         this.emit('Unhandled'); // emit in newSession handlers
@@ -191,9 +204,46 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         this.emit('AMAZON.CancelIntent');
     },
 
+    'deleteProductsIntent': function () {
+
+        var query = connection.query('TRUNCATE ingredients ', function (error) {
+            if (error) throw error;
+            // Neat!
+        });
+
+        this.emit(':ask', "Ich habe alle produkte weggeschissen!");
+    },
+
+    'addProductIntent': function () {
+
+        var userId = this.event.session.user.userId;
+        var myFood = this.event.request.intent.slots.food.value;
+
+        var post  = {id: null, userId: userId, ingredient: myFood };
+        var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+            if (error) throw error;
+            // Neat!
+        });
+
+        this.emit(':ask', "Ich habe "+myFood+" hinzugefügt!");
+    },
+
+
     'AMAZON.YesIntent' : function () {
-        this.handler.state = States.SHOPPING;
-        this.emitWithState('shoppingIntent');
+
+        var myArray = unique(ingredientsArrayToDatabase);
+        var j;
+        for (j = 0; j < myArray.length; j++) {
+            var userId = this.event.session.user.userId;
+
+            var post  = {id: null, userId: userId, ingredient: myArray[j] };
+            var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+                if (error) throw error;
+                // Neat!
+            });
+
+        }
+        this.emit(':ask', "Ich habe sie hinzufügt "+ myArray.join());
     }
 
 });
