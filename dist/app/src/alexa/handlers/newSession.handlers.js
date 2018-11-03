@@ -60,12 +60,16 @@ module.exports = {
         connection.query('SELECT * FROM names', function (error, results) {
             if (error) throw error;
 
-            var userId = self.event.context.System.user.userId;
+            var userId = self.event.session.user.userId;
+
                     var i;
                     for (i = 0; i < results.length; i++) {
+                        console.log(i);
+                        console.log(results[i].userId);
+                        console.log("");
+                        console.log(userId);
+                        if (results[i].userId === userId) {
 
-                        if (results[i].userId == userId) {
-                            console.log("IT IS TRUE!");
                             console.log(results[i].name);
                             output = SpeechOutputUtils.pickRandom(self.t('WELCOME_NAME', results[i].name));
                             break;

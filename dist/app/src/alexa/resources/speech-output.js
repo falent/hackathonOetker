@@ -32,7 +32,7 @@ module.exports = {
   "de-DE": {
     translation: {
         WELCOME_NAME: [
-            "Hallo %s, wie kann ich Ihnen dienen", "Hallöchen, %s"
+            "Hallo %s, welchen Rezept brauchst du?", "Hallo %s, wie welchen Rezept brauchst du?"
         ],
 
         WELCOME_WITHOUT_NAME: [
