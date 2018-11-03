@@ -33,70 +33,14 @@ function initialize(link) {
 }
 
 
-module.exports = Alexa.CreateStateHandler(States.COOK, {
+module.exports = Alexa.CreateStateHandler(States.SHOPPING, {
 
-    'cookIntent': function() {
+    'shoppingIntent': function() {
+
         var self = this;
+        self.response.speak(SpeechOutputUtils.pickRandom(self.t('SHOPPING_QUESTION'))).listen(SpeechOutputUtils.pickRandom(self.t('SHOPPING_QUESTION')));
 
-
-        var userId = this.event.session.user.userId;
-
-        var link = connection.query('SELECT json FROM names WHERE userid=?', [userId],function (error, results) {
-
-            if (error) throw error;
-
-
-
-            var json = JSON.parse(JSON.stringify(results))[0].json;
-
-            var initializePromise = initialize(json);
-            return initializePromise.then(function(result) {
-
-
-
-                var i;
-                var j;
-                var all = "";
-
-
-
-                for (j = 0; j < result.IngredientBlocks.length; j++) {
-
-
-
-                    all += " "+result.IngredientBlocks[j].Title;
-
-
-                for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
-
-
-                    all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
-
-                }
-                }
-
-                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker besttelen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
-
-
-                self.emit(':responseReady');
-
-            }, function(err) {
-                console.log(err);
-            })
-
-
-        });
-
-
-
-
-
-
-
-
-
-
-        
+        self.emit(':responseReady');
 
     },
 

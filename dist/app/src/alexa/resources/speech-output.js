@@ -73,6 +73,9 @@ module.exports = {
         ],
         MORE: [
             "Möchten Sie alles bei Dr Oetker online bestellen?"
+        ],
+        SHOPPING_QUESTION: [
+            "Was wollen Sie bei Dr Oetker bestellen?"
         ]
     }
   }
