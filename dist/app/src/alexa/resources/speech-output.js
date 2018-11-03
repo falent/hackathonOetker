@@ -79,7 +79,7 @@ module.exports = {
             "Hi %s", "Hallo %s", "Hi", "Hallo"
         ],
         SHOPPINGLIST: [
-            "Soll ich die fehlenden Zutaten auf deine Einkaufsliste schreiben?"
+            "Soll ich die fehlenden Zutaten auf deine Einkaufsliste schreiben?",
 
             "Möchten Sie alles bei Dr Oetker online bestellen?"
         ],
