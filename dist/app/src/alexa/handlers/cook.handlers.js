@@ -3,17 +3,8 @@ const Alexa = require('alexa-sdk');
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 var request = require("request");
+const connection = require('../models/con');
 
-
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'sql2.freemysqlhosting.net',
-    user     : 'sql2264064',
-    password : 'wI4%lS9%',
-    port : '3306',
-    database : 'sql2264064'
-
-});
 
 
 function initialize(link) {
@@ -151,6 +142,11 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
     'AMAZON.CancelIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.CancelIntent');
+    },
+
+    'AMAZON.YesIntent' : function () {
+        this.handler.state = States.SHOPPING;
+        this.emitWithState('shoppingIntent');
     }
 
 });

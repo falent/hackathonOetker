@@ -4,6 +4,7 @@ module.exports = {
     NONE: '',
     NAME: '_NAME',
     RECIPE: '_RECIPE',
-    COOK: '_COOK',
-    COOKSTEPS: '_COOKSTEPS'
+    COOKSTEPS: '_COOKSTEPS',
+    SHOPPING: '_SHOPPING',
+    COOK: '_COOK'
 };

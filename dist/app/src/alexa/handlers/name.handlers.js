@@ -2,18 +2,8 @@
 const Alexa = require('alexa-sdk');
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
+const connection = require('../models/con');
 
-
-
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'sql2.freemysqlhosting.net',
-    user     : 'sql2264064',
-    password : 'wI4%lS9%',
-    port : '3306',
-    database : 'sql2264064'
-
-});
 
 
 module.exports = Alexa.CreateStateHandler(States.NAME, {
@@ -77,6 +67,11 @@ module.exports = Alexa.CreateStateHandler(States.NAME, {
     'AMAZON.CancelIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.CancelIntent');
+    },
+    // Custom Intents:
+    'recipeIntent': function() {
+        this.handler.state = States.RECIPE;
+        this.emitWithState('recipeIntent');
     }
 
 });
