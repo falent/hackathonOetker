@@ -37,14 +37,99 @@
             {
               "name": "recipeName",
               "type": "AMAZON.Food"
+            },
+            {
+              "name": "difficulty",
+              "type": "Difficulty"
+            },
+            {
+              "name": "category",
+              "type": "Category"
             }
           ],
           "samples": [
-            "ich brauche {recipeName}"
+            "Ich brauche {recipeName}",
+            "Gib mir ein {difficulty} Rezept",
+            "Gib mir ein Rezept {difficulty}",
+            "Was soll ich heute {category}",
+            "Was kann ich heute {category}"
           ]
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "Difficulty",
+          "values": [
+            {
+              "id": "3",
+              "name": {
+                "value": "schwer",
+                "synonyms": [
+                  "schwierig",
+                  "für Profis",
+                  "aufwändig",
+                  "kompliziert",
+                  "anspruchsvoll"
+                ]
+              }
+            },
+            {
+              "id": "2",
+              "name": {
+                "value": "normal",
+                "synonyms": [
+                  "für Fortgeschrittene",
+                  "etwas Übung erforderlich",
+                  "nicht schwer",
+                  "durchschnittlich",
+                  "mittel"
+                ]
+              }
+            },
+            {
+              "id": "1",
+              "name": {
+                "value": "leicht",
+                "synonyms": [
+                  " für unerfahrene",
+                  "für Anfänger",
+                  "einfach",
+                  "simpel"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Category",
+          "values": [
+            {
+              "id": "canning",
+              "name": {
+                "value": "einmachen"
+              }
+            },
+            {
+              "id": "dessert",
+              "name": {
+                "value": "dessert"
+              }
+            },
+            {
+              "id": "cooking",
+              "name": {
+                "value": "kochen"
+              }
+            },
+            {
+              "id": "baking",
+              "name": {
+                "value": "backen"
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }
