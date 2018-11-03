@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b78cd7a8-0f64-470a-81dc-8e78732ed125" name="Default" comment="Merge branch 'master' of https://github.com/falent/Alexa_universal_skill_template_cli&#10;&#10;# Conflicts:&#10;#&#9;alexa_linux_start.sh">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js" afterDir="false" />
-    </list>
+    <list default="true" id="b78cd7a8-0f64-470a-81dc-8e78732ed125" name="Default" comment="Merge branch 'master' of https://github.com/falent/Alexa_universal_skill_template_cli&#10;&#10;# Conflicts:&#10;#&#9;alexa_linux_start.sh" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -91,8 +88,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speech_assets/intent_schema.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="68" column="45" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="45" />
+            <state relative-caret-position="405">
+              <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -106,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="394">
@@ -124,11 +121,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="390">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
         </entry>
@@ -136,8 +133,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/resources/speech-output.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+            <state relative-caret-position="210">
+              <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -229,6 +226,15 @@
             <path>
               <item name="hackathonOetker" type="b2602c69:ProjectViewProjectNode" />
               <item name="hackathonOetker" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="alexa" type="462c0819:PsiDirectoryNode" />
+              <item name="handlers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hackathonOetker" type="b2602c69:ProjectViewProjectNode" />
+              <item name="hackathonOetker" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -283,7 +289,7 @@
       <workItem from="1518458337573" duration="43000" />
       <workItem from="1518461501860" duration="253000" />
       <workItem from="1518509199145" duration="171000" />
-      <workItem from="1541185605985" duration="50332000" />
+      <workItem from="1541185605985" duration="50432000" />
     </task>
     <task id="LOCAL-00001" summary="changed automated script.">
       <created>1518461651023</created>
@@ -296,7 +302,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50799000" />
+    <option name="totallyTimeSpent" value="50899000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,13 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/resources/speech-output.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/states.const.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -421,17 +420,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/speech_assets/intent_schema.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="68" column="45" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="45" />
+        <state relative-caret-position="405">
+          <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -449,10 +441,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/resources/speech-output.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="47" column="30" lean-forward="true" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
           <caret line="187" column="38" selection-start-line="187" selection-start-column="38" selection-end-line="187" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
