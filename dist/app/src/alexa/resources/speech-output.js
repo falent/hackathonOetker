@@ -72,6 +72,7 @@ module.exports = {
             "Du brauchst %s"
         ],
         MORE: [
+
             "Möchtest du alles bei Dr Oetker online bestellen?"
         ],
         GREETINGS: [
@@ -79,6 +80,11 @@ module.exports = {
         ],
         SHOPPINGLIST: [
             "Soll ich die fehlenden Zutaten auf deine Einkaufsliste schreiben?"
+
+            "Möchten Sie alles bei Dr Oetker online bestellen?"
+        ],
+        SHOPPING_QUESTION: [
+            "Was wollen Sie bei Dr Oetker bestellen?"
         ]
     }
   }

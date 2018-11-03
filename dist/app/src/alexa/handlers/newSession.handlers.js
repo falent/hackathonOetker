@@ -2,20 +2,11 @@
 
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
+const connection = require('../models/con');
 
 
 
 
-
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-    host     : 'sql2.freemysqlhosting.net',
-    user     : 'sql2264064',
-    password : 'wI4%lS9%',
-    port : '3306',
-    database : 'sql2264064'
-
-});
 
 
 
@@ -103,6 +94,10 @@ module.exports = {
     'cookIntent': function() {
         this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
+    },
+    'cookstepsIntent': function() {
+        this.handler.state = States.COOKSTEPS;
+        this.emitWithState('cookstepsIntent');
     },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")

@@ -3,8 +3,17 @@ const Alexa = require('alexa-sdk');
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 var request = require("request");
-const connection = require('../models/con');
 
+
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : 'sql2.freemysqlhosting.net',
+    user     : 'sql2264064',
+    password : 'wI4%lS9%',
+    port : '3306',
+    database : 'sql2264064'
+
+});
 
 
 function initialize(link) {
@@ -33,22 +42,24 @@ function initialize(link) {
 }
 
 
-module.exports = Alexa.CreateStateHandler(States.COOK, {
+module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
-    'cookIntent': function() {
+    'cookstepsIntent': function() {
         var self = this;
 
 
         var userId = this.event.session.user.userId;
 
-        var link = connection.query('SELECT json FROM names WHERE userid=?', [userId],function (error, results) {
+        var link = connection.query('SELECT json, state  FROM names WHERE userid=?', [userId],function (error, results) {
 
             if (error) throw error;
 
 
 
             var json = JSON.parse(JSON.stringify(results))[0].json;
-
+            var state = JSON.parse(JSON.stringify(results))[0].state;
+            console.log('STAAAAAAAAAAAAAAAATE');
+            console.log(state);
             var initializePromise = initialize(json);
             return initializePromise.then(function(result) {
 
@@ -62,29 +73,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
-                var i;
-                var j;
-                var all = "";
-
-
-
-                for (j = 0; j < result.IngredientBlocks.length; j++) {
-
-
-
-                    all += " "+result.IngredientBlocks[j].Title;
-
-
-                for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
-
-
-                    all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
-
-                }
-                }
-
-                self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Möchten Sie die Produkte bei Dr Oetker bestellen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
-
+                self.response.speak(steps[state].Body).listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')));
 
                 self.emit(':responseReady');
 
@@ -133,20 +122,9 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         this.emit('AMAZON.StopIntent');
     },
 
-    'AMAZON.NoIntent': function() {
-        this.handler.state = States.COOKSTEPS;
-        console.log('LETS COOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK');
-        this.emitWithState('cookstepsIntent');
-    },
-
     'AMAZON.CancelIntent': function () {
         this.handler.state = States.NONE;
         this.emit('AMAZON.CancelIntent');
-    },
-
-    'AMAZON.YesIntent' : function () {
-        this.handler.state = States.SHOPPING;
-        this.emitWithState('shoppingIntent');
     }
 
 });
