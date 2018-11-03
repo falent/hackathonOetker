@@ -3,8 +3,10 @@ const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');var request = require("request");
 
 
-var weather;
-var yourApiKey = 'b32bcfcda4ae45cbb0b57dd17ceaa1fe';
+var request = require("request");
+
+
+
 
 function initialize(recipe) {
     // Setting URL and headers for request

@@ -35,9 +35,11 @@
     "body-parser": "^1.17.2",
     "botkit": "^0.5.4",
     "express": "^4.15.3",
-    "request": "^2.81.0",
-    "mongoose": "^4.10.5",
     "mongodb": "^2.2.26",
+    "mongoose": "^4.10.5",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
+    "request": "^2.81.0",
     "update-json-file": "^1.1.1"
   }
 }

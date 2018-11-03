@@ -31,8 +31,15 @@ module.exports = {
   },
   "de-DE": {
     translation: {
-        WELCOME: [
-            "Hi, Was wollen Sie?", "Hallo, sagen Sie mir was Sie wollen"
+        WELCOME_NAME: [
+            "Hallo %s, wie kann ich Ihnen dienen", "Hallöchen, %s"
+        ],
+
+        WELCOME_WITHOUT_NAME: [
+            "Ich höre dich zum ersten Mal, Könnten Sie sagen wie sie heißen"
+        ],
+        WELCOME_TEMPORAL: [
+            "Hallo, wie kann ich Ihnen dienen"
         ],
         REPEAT: [
             "Sagen Sie es noch mal"

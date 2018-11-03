@@ -3,7 +3,22 @@
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 
-//const User = require('../models/user');
+
+
+
+/*
+TODO at the end uncomment
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'dupa',
+    database : 'oetker'
+});
+
+
+*/
+
 
 
 
@@ -17,6 +32,9 @@ module.exports = {
     'NewSession': function() {
 
         /*
+
+        TODO at the end uncomment
+
         // Intent Request:
         if (this.event.request.type === 'IntentRequest') {
             const intentName = this.event.request.intent.name;
@@ -33,12 +51,36 @@ module.exports = {
 
 
 
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('WELCOME')))
-            .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+/*
+TODO at the end uncomment
+
+        var self = this;
+        var output = "";
+
+        connection.query('SELECT * FROM names', function (error, results) {
+            if (error) throw error;
+
+            var userId = self.event.context.System.user.userId;
+                    var i;
+                    for (i = 0; i < results.length; i++) {
+                        console.log('The solution is: ', results[i]);
+                        if (results[i].userId === userId) {
+                            output = SpeechOutputUtils.pickRandom(self.t('WELCOME_NAME', results[i].name));
+                            break;
+                        }else {
+                            output = SpeechOutputUtils.pickRandom(self.t('WELCOME_WITHOUT_NAME'));
+                        }
+                    }
+
+            self.response.speak(output).listen(self.t('REPEAT'));
+            self.emit(':responseReady');
+
+
+        });
+*/      this.response.speak(SpeechOutputUtils.pickRandom(this.t('WELCOME_TEMPORAL'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
         this.emit(':responseReady');
 
-
-    },
+},
     // Custom Intents:
     'nameIntent': function() {
         this.handler.state = States.NAME;
@@ -74,7 +116,7 @@ module.exports = {
         this.emit(':responseReady');
     },
     'Unhandled': function () {
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('UNDEFINED')).listen(this.t('REPEAT')));
+        this.response.speak("sdsdsd").listen("sss");
         this.emit(':responseReady');
 
     }
