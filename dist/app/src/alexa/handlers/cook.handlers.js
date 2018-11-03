@@ -32,6 +32,10 @@ function initialize(link) {
     })
 }
 
+function wordInString(s, word){
+    return new RegExp( '\\b' + word + '\\b', 'i').test(s);
+}
+
 
 module.exports = Alexa.CreateStateHandler(States.COOK, {
 
@@ -82,7 +86,8 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                     var all = "";
 
 
-
+                    var word;
+                    var sentence;
                     for (j = 0; j < result.IngredientBlocks.length; j++) {
 
 
@@ -90,22 +95,31 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                         all += " "+result.IngredientBlocks[j].Title;
 
 
+
                         for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
 
+
+                            sentence = (result.IngredientBlocks[j].Ingredients[i].Text).toLowerCase();
 
                             for (k = 0; k < ingredientsArray.length; k++) {
 
 
-                                ingredientsArray[k];
+                                 word = (ingredientsArray[k].toLowerCase());
+
+
+                                if (wordInString(sentence, word)){
+                                    console.log(sentence);
+                                    console.log(word);
+                                    sentence = sentence+" es gibt"
+                                }
+
+
 
                             }
 
 
 
-                            console.log(result.IngredientBlocks[j].Ingredients[i].Text);
-                            console.log(ingredientsArray.includes(result.IngredientBlocks[j].Ingredients[i].Text));
-
-                            all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
+                            all += " "+sentence+"<break time='1s'/>";
 
                         }
                     }
