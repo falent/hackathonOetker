@@ -120,6 +120,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
     
     'AMAZON.YesIntent' : function () {
         console.log('CHEEEEEEEEEEECK');
+        this.handler.state = States.NONE;
         this.response.speak('Lass uns kochen')
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
