@@ -24,6 +24,10 @@
           "samples": []
         },
         {
+          "name": "AMAZON.NextIntent",
+          "samples": []
+        },
+        {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
