@@ -35,13 +35,13 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         });
         console.log(query.sql); // INSERT INTO posts SET `id` = 1, `title` = 'Hello MySQL'
 */
-        var step = connection.query('SELECT json FROM names WHERE userid='+userId,function (error, results) {
+        var step = connection.query('SELECT json FROM names WHERE userid=?', [userId],function (error, results) {
             if (error) throw error;
         });
 
-        console.log(step.sql);
+        console.log(step);
 
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('COOK', myName)))
+        this.response.speak(SpeechOutputUtils.pickRandom(this.t('COOK', step.)))
             .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
         this.emit(':responseReady');
