@@ -16,11 +16,11 @@
           "samples": []
         },
         {
-          "name": "AMAZON.yesIntent",
+          "name": "AMAZON.YesIntent",
           "samples": []
         },
         {
-          "name": "AMAZON.noIntent",
+          "name": "AMAZON.NoIntent",
           "samples": []
         },
         {
