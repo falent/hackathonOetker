@@ -17,6 +17,7 @@ var connection = mysql.createConnection({
 
 function initialize(link) {
 
+    console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB');
     var options = {
         //url: 'https://recipecloud-search.td-asp.com/recipes_de/_search?q=title:Erdbeer%20AND%20category:baking',
         url: link,
@@ -31,6 +32,7 @@ function initialize(link) {
             if (err) {
                 reject(err);
             } else {
+                console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
                 resolve(JSON.parse(body));
             }
         })
@@ -41,7 +43,7 @@ function initialize(link) {
 module.exports = Alexa.CreateStateHandler(States.COOK, {
 
     'cookIntent': function() {
-
+        var self = this;
 
 
         var userId = this.event.session.user.userId;
@@ -51,15 +53,23 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             if (error) throw error;
 
             console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            console.log(results.RowDataPacket.json);
+            //console.log(results[0].RowDataPacket);
+            /*
+            var string=JSON.stringify(results);
+            var json =  JSON.parse(string);
+            console.log('>> true json: ', json[0].json);*/
+
+            var json = JSON.parse(JSON.stringify(results))[0].json;
             //console.log(results[0].json);
-
-            var initializePromise = initialize(results.RowDataPacket.json.json );
+            console.log('DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD');
+            var initializePromise = initialize(json);
             return initializePromise.then(function(result) {
-                console.log(result.PreparationsBlocks[0].Body);
+                console.log('EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE');
+                console.log(result);
+                console.log(result.PreparationBlocks[0].Body);
+                console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
 
-
-                self.emit(':ask', "Es geht "+result.PreparationsBlocks[0].Body );
+                self.emit(':ask', "Es geht "+result.PreparationBlocks[0].Body );
                 self.emit(':responseReady')
             }, function(err) {
                 console.log(err);
