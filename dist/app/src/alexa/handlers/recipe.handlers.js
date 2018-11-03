@@ -4,19 +4,55 @@ const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
 
 
+
+
+var request = require("request");
+var weather;
+var yourApiKey = 'b32bcfcda4ae45cbb0b57dd17ceaa1fe';
+
+function initialize(city) {
+    // Setting URL and headers for request
+    var options = {
+        url: 'https://recipecloud-search.td-asp.com/recipes_de/_search?q=title:Erdbeer%20AND%20category:baking',
+
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    // Return new promise
+    return new Promise(function(resolve, reject) {
+        // Do async job
+        request.get(options, function(err, resp, body) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(JSON.parse(body));
+            }
+        })
+    })
+
+}
+
+
+
 module.exports = Alexa.CreateStateHandler(States.RECIPE, {
 
     'recipeIntent': function() {
 
-        var request = require('request');
-        request('http://www.google.com', function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                console.log(body) // Print the google web page.
-                this.response.speak(body)
-                    .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
-                this.emit(':responseReady');
-            }
+        var self = this;
+        var initializePromise = initialize(myRecipe);
+        return initializePromise.then(function(result) {
+
+
+            console.log(result)
+
+            self.emit(':ask', "In the next hour in  The temperature is ");
+
+            self.emit(':responseReady');
+
+        }, function(err) {
+            console.log(err);
         })
 
         
