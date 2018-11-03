@@ -93,8 +93,18 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                         for (i = 0; i < result.IngredientBlocks[j].Ingredients.length; i++) {
 
 
+                            for (k = 0; k < ingredientsArray.length; k++) {
+
+
+                                ingredientsArray[k];
+
+                            }
+
+
+
                             console.log(result.IngredientBlocks[j].Ingredients[i].Text);
                             console.log(ingredientsArray.includes(result.IngredientBlocks[j].Ingredients[i].Text));
+
                             all += " "+result.IngredientBlocks[j].Ingredients[i].Text+"<break time='1s'/>";
 
                         }
