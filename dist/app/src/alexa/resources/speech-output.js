@@ -64,6 +64,9 @@ module.exports = {
         ],
         RECIPE: [
             "Welche Rezepte brauchen Sie?"
+        ],
+        COOK: [
+            "Schritt %s"
         ]
     }
   }

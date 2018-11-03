@@ -98,6 +98,10 @@ module.exports = {
         this.handler.state = States.RECIPE;
         this.emitWithState('recipeIntent');
     },
+    'cookIntent': function() {
+        this.handler.state = States.RECIPE;
+        this.emitWithState('cookIntent');
+    },
     'ContactIntent': function() {
         this.response.speak("Our department is here where it is and has no phone number!!  ")
             .listen("do you want something elsee?");

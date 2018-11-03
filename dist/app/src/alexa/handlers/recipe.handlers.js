@@ -29,14 +29,16 @@ function initialize(recipe) {
         url += "title:"+recipe.name;
 
     }
-    if (recipe.difficulty.resolutions != undefined){
-        if (recipe.name != undefined) url += "%20AND%20";
-        url += "difficulty:"+recipe.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id;
-    }
-    if (recipe.category.resolutions != undefined) {
-        if (recipe.name != undefined || recipe.difficulty.resolutions != undefined) url += "%20AND%20";
-        url += "category:"+recipe.category.resolutions.resolutionsPerAuthority[0].values[0].value.id;
-    }
+    if(recipe.difficulty != undefined)
+        if (recipe.difficulty.resolutions != undefined){
+            if (recipe.name != undefined) url += "%20AND%20";
+            url += "difficulty:"+recipe.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id;
+        }
+    if(recipe.category != undefined)
+        if (recipe.category.resolutions != undefined) {
+            if (recipe.name != undefined || recipe.difficulty.resolutions != undefined) url += "%20AND%20";
+            url += "category:"+recipe.category.resolutions.resolutionsPerAuthority[0].values[0].value.id;
+        }
     var options = {
         //url: 'https://recipecloud-search.td-asp.com/recipes_de/_search?q=title:Erdbeer%20AND%20category:baking',
         url: url,

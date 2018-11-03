@@ -3,5 +3,6 @@
 module.exports = {
     NONE: '',
     NAME: '_NAME',
-    RECIPE: '_RECIPE'
+    RECIPE: '_RECIPE',
+    COOK: '_COOK'
 };
