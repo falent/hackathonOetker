@@ -2,7 +2,7 @@
 const Alexa = require('alexa-sdk');
 const States = require('./states.const');
 const SpeechOutputUtils = require('../utils/speech-output.utils');
-
+var request = require("request");
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -15,36 +15,63 @@ var connection = mysql.createConnection({
 });
 
 
+function initialize(link) {
+
+    var options = {
+        //url: 'https://recipecloud-search.td-asp.com/recipes_de/_search?q=title:Erdbeer%20AND%20category:baking',
+        url: link,
+        headers: {
+            'User-Agent': 'request'
+        }
+    };
+    // Return new promise
+    return new Promise(function(resolve, reject) {
+        // Do async job
+        request.get(options, function(err, resp, body) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(JSON.parse(body));
+            }
+        })
+    })
+}
+
+
 module.exports = Alexa.CreateStateHandler(States.COOK, {
 
     'cookIntent': function() {
 
 
-        //var myName = this.event.request.intent.slots.name.value;
+
         var userId = this.event.session.user.userId;
-        //var state = "";
-        //var json = "";
-        /*
-        console.log("THIS IS USERID")
-        console.log(userId);*/
 
-        /*var post  = {id: null, name: myName, userId: userId, state: state, json: json};
-        var query = connection.query('INSERT INTO names SET ?', post, function (error, results, fields) {
+        var link = connection.query('SELECT json FROM names WHERE userid=?', [userId],function (error, results) {
+
             if (error) throw error;
-            // Neat!
+
+            console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            console.log(results.RowDataPacket.json);
+            //console.log(results[0].json);
+
+            var initializePromise = initialize(results.RowDataPacket.json.json );
+            return initializePromise.then(function(result) {
+                console.log(result.PreparationsBlocks[0].Body);
+
+
+                self.emit(':ask', "Es geht "+result.PreparationsBlocks[0].Body );
+                self.emit(':responseReady')
+            }, function(err) {
+                console.log(err);
+            })
+
+
         });
-        console.log(query.sql); // INSERT INTO posts SET `id` = 1, `title` = 'Hello MySQL'
-*/
-        var step = connection.query('SELECT json FROM names WHERE userid=?', [userId],function (error, results) {
-            if (error) throw error;
-        });
 
-        console.log(step);
 
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('COOK', step.)))
-            .listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
 
-        this.emit(':responseReady');
+
+
 
 
 
