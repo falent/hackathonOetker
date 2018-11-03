@@ -15,6 +15,7 @@ var connection = mysql.createConnection({
 
 });
 
+var i = 0;
 
 
 
@@ -60,6 +61,8 @@ function initialize(recipe) {
 }
 
 module.exports = Alexa.CreateStateHandler(States.RECIPE, {
+
+
     'recipeIntent': function() {
         var self = this;
 
@@ -78,15 +81,17 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         return initializePromise.then(function(result) {
             console.log(result);
 
+            var curRecipe = result.hits.hits[i];
             var userId = self.event.session.user.userId;
-                connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', result.hits.hits[0]._source.recipe, userId], function (error, results) {
-                    if (error) throw error;
-                    console.log('!DATABANK UPDATE!');
-                });
+            connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', curRecipe._source.recipe, userId], function (error, results) {
+                if (error) throw error;
+                console.log('!DATABANK UPDATE!');
+            });
+
+            const difficulty = ['leicht', 'nicht schwer', 'schwer'];
 
 
-
-            self.emit(':ask', "Ich habe  "+result.hits.total+" Rezepte gefunden. Möchtest du "+result.hits.hits[0]._source.title+" kochen?" );
+            self.emit(':ask', "Ich habe  "+result.hits.total+" Rezepte gefunden. " +curRecipe._source.title+" ist " + difficulty[curRecipe._source.difficulty-1] + " zu kochen und es dauert " + curRecipe._source.preparation_time +  " Minuten. Möchtest du es zubereiten?");
             self.emit(':responseReady');
             }, function(err) {
                 console.log(err);
@@ -106,8 +111,9 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE, {
         this.emit(':ask', SpeechOutputUtils.pickRandom(this.t('HELP')));
     },
     'AMAZON.NoIntent': function() {
-        this.handler.state = States.NONE;
-        this.emit('AMAZON.CancelIntent');
+        this.handler.state = States.RECIPE;
+        console.log('NOOOOOOOOOOOOOOOOOOOOOOO');
+        this.emitWithState('recipeIntent');
     },
     'AMAZON.StopIntent': function () {
         this.handler.state = States.NONE;

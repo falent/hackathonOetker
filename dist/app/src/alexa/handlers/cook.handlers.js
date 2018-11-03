@@ -69,7 +69,9 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                 console.log(result.PreparationBlocks[0].Body);
                 console.log('FFFFFFFFFFFFFFFFFFFFFFFFFFFFF');
 
-                self.emit(':ask', "Es geht "+result.PreparationBlocks[0].Body );
+                const steps = result.PreparationBlocks.sort(compareValues('SortOrder'));
+
+                self.emit(':ask', "Es geht "+steps[0].Body );
                 self.emit(':responseReady')
             }, function(err) {
                 console.log(err);
