@@ -258,7 +258,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         this.emit(':tell', "Wir fangen an");
 
         this.emit(':responseReady');*/
-        console.log('fangen an');
+
         this.handler.state = States.COOKSTEPS;
         this.emitWithState('cookstepsIntent');
     }

@@ -37,7 +37,7 @@ function initialize(link) {
             if (err) {
                 reject(err);
             } else {
-                console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+                console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC123');
                 resolve(JSON.parse(body));
             }
         })
@@ -57,7 +57,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
         var userId = self.event.session.user.userId;
 
-
+        console.log("before databank");
         connection.query('UPDATE names SET state = ? WHERE userid = ?', [position, userId], function (error, results) {
             if (error) throw error;
             console.log('!DATABANK UPDATE!');
@@ -68,10 +68,12 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
             if (error) throw error;
 
-
+            console.log("select state");
 
             var json = JSON.parse(JSON.stringify(results))[0].json;
             var state = JSON.parse(JSON.stringify(results))[0].state;
+
+            console.log("json parsing");
 
             console.log(position);
             console.log('STAAAAAAAAAAAAAAAATE');

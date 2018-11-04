@@ -49,26 +49,35 @@
         },
         {
           "name": "startcookIntent",
+          "slots": [],
           "samples": [
-            "lass uns kochen", "lass uns anfangen"
+            "lass uns kochen",
+            "lass uns anfangen",
+            "lass uns starten",
+            "back mit mir"
           ]
         },
         {
-          "name":"continueIntent",
+          "name": "continueIntent",
+          "slots": [],
           "samples": [
-            "lies weiter vor"
+            "lies weiter vor",
+            "mach weiter"
           ]
         },
         {
           "name": "waitIntent",
+          "slots": [],
           "samples": [
             "warte"
           ]
         },
         {
-          "name":"laststepIntent",
+          "name": "laststepIntent",
+          "slots": [],
           "samples": [
-            "geh zum letzen schritt"
+            "geh zum letzen schritt",
+            "mach beim letzten Schritt weiter"
           ]
         },
         {
@@ -84,7 +93,9 @@
             }
           ],
           "samples": [
-            "mein Name ist {name}"
+            "mein Name ist {name}",
+            "Ich heiße {name}",
+            "Ich bin {name}"
           ]
         },
         {
@@ -131,7 +142,10 @@
             "Gib mir ein {difficulty} Rezept",
             "Gib mir ein Rezept {difficulty}",
             "Was soll ich heute {category}",
-            "Was kann ich heute {category}"
+            "Was kann ich heute {category}",
+            "Ich möchte {recipeName} {category}",
+            "{recipeName}",
+            "Ich suche ein Rezept für {recipeName}"
           ]
         },
         {
@@ -145,6 +159,38 @@
           "samples": [
             "Ich habe {food} gekauft"
           ]
+        },
+        {
+          "name": "AMAZON.MoreIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateSettingsIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PageUpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PageDownIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollRightIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollDownIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollLeftIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ScrollUpIntent",
+          "samples": []
         }
       ],
       "types": [
