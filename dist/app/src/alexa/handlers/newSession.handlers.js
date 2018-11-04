@@ -143,12 +143,10 @@ module.exports = {
 
     'deleteProductsIntent': function () {
 
-        var query = connection.query('TRUNCATE ingredients ', function (error) {
-            if (error) throw error;
-            // Neat!
-        });
 
-        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/aaU4YRxc-output1.mp3' /> aber ich habe alle produkte weggeschissen!");
+        this.attributes.lastState = "new";
+        this.handler.state = States.GENERAL;
+        this.emitWithState('deleteProductsIntent');
     },
 
     'addProductIntent': function () {
