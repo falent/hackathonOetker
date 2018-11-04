@@ -108,6 +108,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
+
                                 if (wordInString(sentence, word)){
                                     console.log(sentence);
                                     console.log(word);
