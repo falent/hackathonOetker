@@ -7,7 +7,7 @@ const Alexa = require('alexa-sdk');
 
 const RandomDate = require('../utils/random-date.utils');
 
-
+const callMe = require('../utils/call.utils');
 
 
 
@@ -150,19 +150,62 @@ module.exports = {
 
     },
 
-    'addProductIntent': function () {
+    'deleteProductsIntent': function () {
 
-        var userId = this.event.session.user.userId;
-        var myFood = this.event.request.intent.slots.food.value;
-        var myDate = RandomDate('12-11-2018', '14-11-2018')
-
-        var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
-        var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+        var query = connection.query('TRUNCATE ingredients ', function (error) {
             if (error) throw error;
             // Neat!
         });
 
-        this.emit(':ask', "Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar");
+        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/aaU4YRxc-output1.mp3' /> aber ich habe alle produkte weggeschissen!");
+    },
+
+    'addProductIntent': function () {
+
+
+        var userId = this.event.session.user.userId;
+        var myFood = this.event.request.intent.slots.food.value;
+
+        var initializePromise = callMe.initialize("https://www.googleapis.com/customsearch/v1?googlehost=google.co.uk&safe=medium&searchType=image&key=AIzaSyBM4seUp34UjloDGy-5SLz-6W7mQ0waLCI&cx=014853195659919022276:i07jr-y6e6m&q="+myFood);
+        var self = this;
+        var myLink = "";
+        return initializePromise.then(function(result) {
+
+            myLink=result.items[0].link;
+
+
+            var myDate = RandomDate.randomDate('11-04-2018', '11-11-2018');
+
+            const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
+            const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png'))
+                .setBackButtonBehavior('HIDDEN')
+                .setImage(Alexa.utils.ImageUtils.makeImage(myLink))
+                .build();
+
+
+            var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
+            var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+                if (error) throw error;
+                // Neat!
+            });
+
+            console.log(myLink);
+            console.log(myFood);
+
+
+
+
+
+
+            self.response.speak("Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar").listen("do you want something elsee?").renderTemplate(template);;
+            self.emit(':responseReady');
+
+
+
+
+        }, function(err) {
+            console.log(err);
+        })
 
 
     }
