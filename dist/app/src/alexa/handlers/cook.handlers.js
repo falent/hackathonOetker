@@ -136,7 +136,9 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                     all = all.replace("gestr.", "gestrichenen").replace("tl", "Teelöffel").replace("pck.", "Packung ").replace("z. b.", "Zum Beispiel");
 
 
-                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?")
+                        .listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')))
+                        .cardRenderer(results.title, SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all)));
 
 
                     self.emit(':responseReady');
