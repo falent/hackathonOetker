@@ -28,7 +28,7 @@ function initialize(link) {
             if (err) {
                 reject(err);
             } else {
-                console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC');
+                console.log('CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC1234');
                 resolve(JSON.parse(body));
             }
         })
