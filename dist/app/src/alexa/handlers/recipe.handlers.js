@@ -147,7 +147,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
     },
     
     'AMAZON.YesIntent' : function () {
-        this.response.speak("Los geht's").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+        //this.response.speak("Wir fangen an").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
         this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
     },
@@ -155,12 +155,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
     'shoppingListIntent': function() {
         this.handler.state = States.SHOPPINGLIST;
         this.emitWithState(':shoppingListIntent');
-    },
-'buddyIntent' : function(){
-    //this.handler.state = States.RECIPE;
-    this.response.speak(SpeechOutputUtils.pickRandom(this.t('BUDDY_PROBLEM'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
-    this.emit(':responseReady');
-}
+    }
 
 
 });

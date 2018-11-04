@@ -54,10 +54,9 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
 
 
+
         var userId = self.event.session.user.userId;
 
-        console.log('THIS.POSITION ' + this.position);
-        console.log('THIS.POSITION ' + position);
 
         connection.query('UPDATE names SET state = ? WHERE userid = ?', [position, userId], function (error, results) {
             if (error) throw error;
@@ -74,6 +73,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
             var json = JSON.parse(JSON.stringify(results))[0].json;
             var state = JSON.parse(JSON.stringify(results))[0].state;
 
+            console.log(position);
             console.log('STAAAAAAAAAAAAAAAATE');
             console.log(state);
             var initializePromise = initialize(json);
@@ -89,9 +89,24 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
                 self.emit(':ask', "Es geht "+steps[0].Body );
                 self.emit(':responseReady')*/
 
+                var answer = "";
+                var post ="";
+
+                if(position == 0) {
 
 
-                self.response.speak("Schritt " + (state + 1) +  steps[state].Body).listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')));
+                    answer = "Wir fangen an. ";
+                } else if (position == last)
+                    {
+                        post = " Wir sind fertig! Guten Appetit!";
+                    }
+
+
+                answer += "Schritt " + steps[state].SortOrder + " : ";
+
+
+               // self.response.speak("ssssssss");
+                self.response.speak(answer +  steps[state].Body + post).listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')));
 
                 self.emit(':responseReady');
 
@@ -177,15 +192,35 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
     'AMAZON.PauseIntent' : function () {
         console.log('PAUSE');
-        this.handler.state = States.COOKSTEPS;
-        this.emit('AMAZON.PauseIntent');
+        //this.handler.state = States.COOKSTEPS;
+        this.response.speak("Sag mir wenn ich weiterlesen soll").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+
         this.emit(':responseReady');
     },
 
-    'AMAZON.ResumeIntent':function () {
+    'waitIntent' : function () {
+        /*this.emit(':tell', "Sag mir wenn ich weiterlesen soll");
+        this.emit(':responseReady');*/
+        this.response.speak("Sag mir wenn ich weiterlesen soll").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+
+        this.emit(':responseReady');
+    },
+
+    'continueIntent':function () {
         console.log('RESUME');
         this.handler.state = States.COOKSTEPS;
-        this.emit('AMAZON.RepeatIntent');
+        this.emit('cookstepsIntent');
+        //this.emit(':responseReady');
+    },
+
+    'laststepIntent' :function () {
+        position = last;
+        this.handler.state = States.COOKSTEPS;
+        this.emit('cookstepsIntent');
+    },
+    'buddyIntent' : function(){
+        //this.handler.state = States.RECIPE;
+        this.response.speak(SpeechOutputUtils.pickRandom(this.t('BUDDY_PROBLEM'))).listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
         this.emit(':responseReady');
     }
 

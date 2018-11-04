@@ -48,6 +48,30 @@
           "samples": []
         },
         {
+          "name": "startcookIntent",
+          "samples": [
+            "lass uns kochen", "lass uns anfangen"
+          ]
+        },
+        {
+          "name":"continueIntent",
+          "samples": [
+            "lies weiter vor"
+          ]
+        },
+        {
+          "name": "waitIntent",
+          "samples": [
+            "warte"
+          ]
+        },
+        {
+          "name":"laststepIntent",
+          "samples": [
+            "geh zum letzen schritt"
+          ]
+        },
+        {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         },
