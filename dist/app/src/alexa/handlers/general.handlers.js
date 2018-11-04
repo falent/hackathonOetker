@@ -106,7 +106,8 @@ module.exports = Alexa.CreateStateHandler(States.GENERAL,{
 
 
 
-            self.response.speak("Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar "+extraOutput).listen("was möchtest du machen?").renderTemplate(template);;
+            self.response.speak("Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar "+extraOutput).listen("was möchtest du machen?");
+            //.renderTemplate(template);; to do
             self.emit(':responseReady');
 
 
