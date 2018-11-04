@@ -5,7 +5,7 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');var request = 
 
 var request = require("request");
 const connection = require('../models/con');
-
+const callTemplate = require('../utils/template.utils');
 
 var i = 0;
 
@@ -96,7 +96,9 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
         var initializePromise = initialize(myRecipe );
         return initializePromise.then(function(result) {
             console.log(result);
-
+            console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+            var temp = callTemplate.getTemplate((result.hits.hits[0]._source.image).replace("http://", "https://"));
+            console.log(temp);
             var curRecipe = result.hits.hits[i];
             var userId = self.event.session.user.userId;
             connection.query('UPDATE names SET state = ?, json = ?  WHERE userid = ?', ['0', curRecipe._source.recipe, userId], function (error, results) {
@@ -107,8 +109,12 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
             const difficulty = ['leicht', 'nicht schwer', 'schwer'];
 
 
-            self.emit(':ask', "Ich habe  "+result.hits.total+" Rezepte gefunden. " +curRecipe._source.title+" ist " + difficulty[curRecipe._source.difficulty-1] + " zu kochen und es dauert " + curRecipe._source.preparation_time +  " Minuten. Möchtest du es zubereiten?");
+
+            self.response.speak("Ich habe  "+result.hits.total+" Rezepte gefunden. " +curRecipe._source.title+" ist " + difficulty[curRecipe._source.difficulty-1] + " zu kochen und es dauert " + curRecipe._source.preparation_time +  " Minuten.")
+                .listen("Möchtest du es zubereiten?")
+                .renderTemplate(temp);
             self.emit(':responseReady');
+
             }, function(err) {
                 console.log(err);
             })
