@@ -5,6 +5,9 @@ const SpeechOutputUtils = require('../utils/speech-output.utils');
 var request = require("request");
 const connection = require('../models/con');
 var unique = require('array-unique');
+const RandomDate = require('../utils/random-date.utils');
+
+const callMe = require('../utils/call.utils');
 
 
 function initialize(link) {
@@ -104,6 +107,8 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                                  word = (ingredientsArray[k].toLowerCase());
 
 
+
+
                                 if (wordInString(sentence, word)){
                                     console.log(sentence);
                                     console.log(word);
@@ -123,10 +128,13 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
 
 
-                            all += " "+sentence+"<break time='1s'/>";
+                            all += " "+sentence+"<break time='0.4s'/>";
 
                         }
                     }
+
+                    all = all.replace("gestr.", "gestrichenen").replace("tl", "Teelöffel").replace("pck.", "Packung ").replace("z. b.", "Zum Beispiel");
+
 
                     self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?").listen(SpeechOutputUtils.pickRandom(self.t('REPEAT'))).cardRenderer("ss", "ss");;
 
@@ -211,22 +219,59 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
     'addProductIntent': function () {
 
+
         var userId = this.event.session.user.userId;
         var myFood = this.event.request.intent.slots.food.value;
 
-        var post  = {id: null, userId: userId, ingredient: myFood };
-        var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
-            if (error) throw error;
-            // Neat!
-        });
+        var initializePromise = callMe.initialize("https://www.googleapis.com/customsearch/v1?googlehost=google.co.uk&safe=medium&searchType=image&key=AIzaSyBM4seUp34UjloDGy-5SLz-6W7mQ0waLCI&cx=014853195659919022276:i07jr-y6e6m&q="+myFood);
+        var self = this;
+        var myLink = "";
+        return initializePromise.then(function(result) {
 
-        this.emit(':ask', "Ich habe "+myFood+" hinzugefügt!");
+            myLink=result.items[0].link;
+
+
+            var myDate = RandomDate.randomDate('11-04-2018', '11-11-2018');
+
+            const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
+            const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png'))
+                .setBackButtonBehavior('HIDDEN')
+                .setImage(Alexa.utils.ImageUtils.makeImage(myLink))
+                .build();
+
+
+            var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
+            var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
+                if (error) throw error;
+                // Neat!
+            });
+
+            console.log(myLink);
+            console.log(myFood);
+
+
+
+
+
+
+            self.response.speak("Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar").listen("do you want something elsee?").renderTemplate(template);;
+            self.emit(':responseReady');
+
+
+
+
+        }, function(err) {
+            console.log(err);
+        })
+
+
     },
 
 
     'AMAZON.YesIntent' : function () {
 
         var myArray = unique(ingredientsArrayToDatabase);
+
         var j;
         for (j = 0; j < myArray.length; j++) {
             var userId = this.event.session.user.userId;
@@ -238,7 +283,7 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
             });
 
         }
-        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/VEYqi8zP-output.mp3' /> Ich habe sie hinzufügt" + myArray.join());
+        this.emit(':ask', "<audio src='https://www.jovo.tech/audio/VEYqi8zP-output.mp3' /> Ich habe sie hinzufügt" + myArray.join().replace("gestr.", "gestrichenen").replace("tl", "Teelöffel").replace("pck.", "Packung ").replace("z. b.", "Zum Beispiel"));
     }
 
 });

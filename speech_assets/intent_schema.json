@@ -72,6 +72,13 @@
           ]
         },
         {
+          "name": "renderImageIntent",
+          "slots": [],
+          "samples": [
+            "zeig mir"
+          ]
+        },
+        {
           "name": "deleteProductsIntent",
           "slots": [],
           "samples": [
