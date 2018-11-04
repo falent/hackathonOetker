@@ -85,8 +85,9 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
 
         var self = this;
 
-
+        console.log("!!!!HHHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
         console.log(myRecipe.name)
+        console.log("HHHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER!!!");
 
         //if (myRecipe.difficulty != undefined)
         console.log(myRecipe.name + " NAME");
