@@ -6,5 +6,6 @@ module.exports = {
     RECIPE: '_RECIPE',
     COOKSTEPS: '_COOKSTEPS',
     SHOPPING: '_SHOPPING',
+    GENERAL: '_GENERAL',
     COOK: '_COOK'
 };

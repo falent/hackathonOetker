@@ -9,6 +9,7 @@ const nameHandlers = require('./alexa/handlers/name.handlers');
 const recipeHandlers = require('./alexa/handlers/recipe.handlers');
 const cookHandlers = require('./alexa/handlers/cook.handlers');
 const cookstepsHandlers = require('./alexa/handlers/cooksteps.handlers');
+const generalHandlers = require('./alexa/handlers/general.handlers');
 
 const shoppingHandlers = require('./alexa/handlers/shopping.handlers');
 var allHandlers = [
@@ -17,7 +18,8 @@ var allHandlers = [
     recipeHandlers,
     cookHandlers,
     cookstepsHandlers,
-    shoppingHandlers
+    shoppingHandlers,
+	generalHandlers
 ];
 
 

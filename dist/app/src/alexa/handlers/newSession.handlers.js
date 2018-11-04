@@ -9,7 +9,7 @@ const RandomDate = require('../utils/random-date.utils');
 
 const callMe = require('../utils/call.utils');
 
-
+var state = "";
 
 
 
@@ -108,16 +108,11 @@ module.exports = {
         this.handler.state = States.COOKSTEPS;
         this.emitWithState('cookstepsIntent');
     },
-    'ContactIntent': function() {
-        this.response.speak("Our department is here where it is and has no phone number!!  ")
-            .listen("do you want something elsee?");
-        this.emit(':responseReady');
-    },
 
     // Built-In Intents:
 
     'AMAZON.HelpIntent': function () {
-        this.response.speak(SpeechOutputUtils.pickRandom(this.t('HELP')));
+        this.response.speak(SpeechOutputUtils.pickRandom(this.t('HELP_NEW_SESSION'))).listen(SpeechOutputUtils.pickRandom(this.t('HELP_ASK')));
         this.emit(':responseReady');
 
     },
@@ -132,11 +127,7 @@ module.exports = {
     	this.response.speak(SpeechOutputUtils.pickRandom(this.t('CANCEL_ANSWER')));
         this.emit(':responseReady');
     },
-    'Unhandled': function () {
-        this.response.speak("sdsdsd").listen("sss");
-        this.emit(':responseReady');
 
-    },
     'renderImageIntent': function () {
         const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
         const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png'))
@@ -162,51 +153,22 @@ module.exports = {
 
     'addProductIntent': function () {
 
+        this.attributes.lastState = "new";
+        this.handler.state = States.GENERAL;
+        this.emitWithState('addProductIntent');
 
-        var userId = this.event.session.user.userId;
-        var myFood = this.event.request.intent.slots.food.value;
-
-        var initializePromise = callMe.initialize("https://www.googleapis.com/customsearch/v1?googlehost=google.co.uk&safe=medium&searchType=image&key=AIzaSyBM4seUp34UjloDGy-5SLz-6W7mQ0waLCI&cx=014853195659919022276:i07jr-y6e6m&q="+myFood);
-        var self = this;
-        var myLink = "";
-        return initializePromise.then(function(result) {
-
-            myLink=result.items[0].link;
+    },
 
 
-            var myDate = RandomDate.randomDate('11-04-2018', '11-11-2018');
+    'AMAZON.YesIntent' : function () {
 
-            const builder = new Alexa.templateBuilders.BodyTemplate7Builder();
-            const template = builder.setBackgroundImage(Alexa.utils.ImageUtils.makeImage('https://d2o906d8ln7ui1.cloudfront.net/images/BT7_Background.png'))
-                .setBackButtonBehavior('HIDDEN')
-                .setImage(Alexa.utils.ImageUtils.makeImage(myLink))
-                .build();
-
-
-            var post  = {id: null, userId: userId, ingredient: myFood, bestBefore:  myDate};
-            var query = connection.query('INSERT INTO ingredients SET ?', post, function (error, results, fields) {
-                if (error) throw error;
-                // Neat!
-            });
-
-            console.log(myLink);
-            console.log(myFood);
-
-
-
-
-
-
-            self.response.speak("Ich lege und scanne <audio src='https://www.jovo.tech/audio/Ry3Pirzx-scanner.mp3' />  "+myFood+" in den Kühlschrank!. Dein Essen ist bis "+myDate+" haltbar").listen("do you want something elsee?").renderTemplate(template);;
-            self.emit(':responseReady');
-
-
-
-
-        }, function(err) {
-            console.log(err);
-        })
-
+        this.handler.state = States.RECIPE;
+        this.handler.myFood = "eier";
+        this.emitWithState('recipeIntent');
+    },
+    'Unhandled': function () {
+        this.response.speak("Ich habe dich nicht verstanden").listen("kannst du es bitte wiederholen?");
+        this.emit(':responseReady');
 
     }
 };

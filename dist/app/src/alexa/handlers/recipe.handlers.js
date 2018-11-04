@@ -56,15 +56,38 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
 
 
     'recipeIntent': function() {
+
+        console.log("HHHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEER");
+
+        var myRecipeFromUser = "";
+        if (this.attributes.myFood)  {
+            var myRecipe = {
+                name : this.attributes.myFood,
+                //difficulty : this.event.request.intent.slots.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id,
+                difficulty : "",
+                //category : this.event.request.intent.slots.category.resolutions.resolutionsPerAuthority[0].values[0].value.id
+                category : ""
+            };
+        }
+        else {
+            var myRecipe = {
+                name : this.event.request.intent.slots.recipeName.value,
+                //difficulty : this.event.request.intent.slots.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id,
+                difficulty : this.event.request.intent.slots.difficulty,
+                //category : this.event.request.intent.slots.category.resolutions.resolutionsPerAuthority[0].values[0].value.id
+                category : this.event.request.intent.slots.category
+            };
+        }
+        this.attributes.myFood = null;
+
+
+
+
         var self = this;
 
-        var myRecipe = {
-            name : this.event.request.intent.slots.recipeName.value,
-            //difficulty : this.event.request.intent.slots.difficulty.resolutions.resolutionsPerAuthority[0].values[0].value.id,
-            difficulty : this.event.request.intent.slots.difficulty,
-            //category : this.event.request.intent.slots.category.resolutions.resolutionsPerAuthority[0].values[0].value.id
-            category : this.event.request.intent.slots.category
-        }
+
+        console.log(myRecipe.name)
+
         //if (myRecipe.difficulty != undefined)
         console.log(myRecipe.name + " NAME");
         console.log(myRecipe.difficulty + " DIFF");
@@ -105,9 +128,14 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
         this.emit(':ask', "");
     },
     'AMAZON.NoIntent': function() {
-        this.handler.state = States.RECIPE;
+        this.handler.state = States.NONE;
         console.log('NOOOOOOOOOOOOOOOOOOOOOOO');
-        this.emitWithState('recipeIntent');
+        this.emitWithState('AMAZON.HelpIntent');
+    },
+    'addProductIntent': function() {
+        this.handler.state = States.NONE;
+        console.log('NOOOOOOOOOOOOOOOOOOOOOOO');
+        this.emitWithState('addProductIntent');
     },
     'AMAZON.StopIntent': function () {
         this.handler.state = States.NONE;
