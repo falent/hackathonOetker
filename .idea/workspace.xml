@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b78cd7a8-0f64-470a-81dc-8e78732ed125" name="Default" comment="Merge branch 'master' of https://github.com/falent/Alexa_universal_skill_template_cli&#10;&#10;# Conflicts:&#10;#&#9;alexa_linux_start.sh" />
+    <list default="true" id="b78cd7a8-0f64-470a-81dc-8e78732ed125" name="Default" comment="Merge branch 'master' of https://github.com/falent/Alexa_universal_skill_template_cli&#10;&#10;# Conflicts:&#10;#&#9;alexa_linux_start.sh">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/speech_assets/intent_schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/speech_assets/intent_schema.json" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -35,14 +41,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="3585" />
-          <entry key="json" value="278" />
+          <entry key="js" value="4220" />
+          <entry key="json" value="418" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JSON" value="278" />
-          <entry key="JavaScript" value="3585" />
+          <entry key="JSON" value="418" />
+          <entry key="JavaScript" value="4220" />
         </counts>
       </usages-collector>
     </session>
@@ -61,8 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+            <state relative-caret-position="155">
+              <caret line="138" column="6" lean-forward="true" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -71,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/dist/app/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -79,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-356">
-              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="-311">
+              <caret line="77" selection-start-line="77" selection-end-line="77" />
             </state>
           </provider>
         </entry>
@@ -88,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/speech_assets/intent_schema.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+            <state relative-caret-position="330">
+              <caret line="70" column="35" selection-end-line="225" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -97,17 +103,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="130" column="210" selection-start-line="130" selection-start-column="210" selection-end-line="130" selection-end-column="210" />
+            <state relative-caret-position="1325">
+              <caret line="133" column="21" lean-forward="true" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="187" column="38" selection-start-line="187" selection-start-column="38" selection-end-line="187" selection-end-column="38" />
+            <state relative-caret-position="319">
+              <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -115,16 +121,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/states.const.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
+            <state relative-caret-position="-176">
               <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
             </state>
           </provider>
@@ -168,9 +174,9 @@
         <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js" />
         <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/states.const.js" />
         <option value="$PROJECT_DIR$/dist/app/src/index.js" />
+        <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" />
         <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js" />
         <option value="$PROJECT_DIR$/speech_assets/intent_schema.json" />
-        <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js" />
         <option value="$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js" />
       </list>
     </option>
@@ -289,7 +295,7 @@
       <workItem from="1518458337573" duration="43000" />
       <workItem from="1518461501860" duration="253000" />
       <workItem from="1518509199145" duration="171000" />
-      <workItem from="1541185605985" duration="50432000" />
+      <workItem from="1541185605985" duration="57680000" />
     </task>
     <task id="LOCAL-00001" summary="changed automated script.">
       <created>1518461651023</created>
@@ -302,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50899000" />
+    <option name="totallyTimeSpent" value="58147000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -317,9 +323,9 @@
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7628705" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.75975037" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" sideWeight="0.49921995" weight="0.25" />
-      <window_info id="npm" order="2" sideWeight="0.23712948" side_tool="true" visible="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.2402496" side_tool="true" visible="true" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -346,6 +352,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changed automated script." />
     <option name="LAST_COMMIT_MESSAGE" value="changed automated script." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js</url>
+          <line>135</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/skill.json">
@@ -402,42 +420,7 @@
     <entry file="file://$PROJECT_DIR$/dist/app/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-356">
-          <caret line="74" selection-start-line="74" selection-end-line="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/states.const.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/speech_assets/intent_schema.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="69" column="45" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="130" column="210" selection-start-line="130" selection-start-column="210" selection-end-line="130" selection-end-column="210" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="35" column="26" lean-forward="true" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -448,17 +431,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js">
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/states.const.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="187" column="38" selection-start-line="187" selection-start-column="38" selection-end-line="187" selection-end-column="38" />
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/newSession.handlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-311">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/name.handlers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="-176">
           <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/recipe.handlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="138" column="6" lean-forward="true" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/speech_assets/intent_schema.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="70" column="35" selection-end-line="225" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cook.handlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1325">
+          <caret line="133" column="21" lean-forward="true" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/src/alexa/handlers/cooksteps.handlers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
         </state>
       </provider>
     </entry>

@@ -207,6 +207,13 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         this.emit('AMAZON.CancelIntent');
     },
 
+    'AMAZON.PauseIntent' : function () {
+        console.log('PAUSE');
+        this.handler.state = States.COOK;
+        //this.emit('AMAZON.PauseIntent');
+        this.emit(':responseReady');
+    },
+
     'deleteProductsIntent': function () {
 
         var query = connection.query('TRUNCATE ingredients ', function (error) {
@@ -244,6 +251,16 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
 
         }
         this.emit(':ask', "<audio src='https://www.jovo.tech/audio/VEYqi8zP-output.mp3' /> Ich habe sie hinzufügt" + myArray.join().replace("gestr.", "gestrichenen").replace("tl", "Teelöffel").replace("pck.", "Packung ").replace("z. b.", "Zum Beispiel"));
+    },
+
+    'startcookIntent' : function () {
+       /*// this.response.speak("Wir fangen an").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
+        this.emit(':tell', "Wir fangen an");
+
+        this.emit(':responseReady');*/
+        console.log('fangen an');
+        this.handler.state = States.COOKSTEPS;
+        this.emitWithState('cookstepsIntent');
     }
 
 });
