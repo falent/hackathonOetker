@@ -6,6 +6,7 @@ var request = require("request");
 const connection = require('../models/con');
 var unique = require('array-unique');
 const RandomDate = require('../utils/random-date.utils');
+var striptags = require('striptags');
 
 const callMe = require('../utils/call.utils');
 var state = "";
@@ -136,9 +137,9 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
                     all = all.replace("gestr.", "gestrichenen").replace("tl", "Teelöffel").replace("pck.", "Packung ").replace("z. b.", "Zum Beispiel");
 
 
-                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all))+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?")
+                    self.response.speak(SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all)+ " Leider haben Sie nicht alle Produkte. Soll ich es bestellen? oder lass uns kochen")+" Leider haben Sie nicht alle Produkte. Soll ich es bestellen?")
                         .listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')))
-                        .cardRenderer(results.title, SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', all)));
+                        .cardRenderer(results.title, SpeechOutputUtils.pickRandom(self.t('COOK_INGREDIENTS', striptags(all))));
 
 
                     self.emit(':responseReady');
