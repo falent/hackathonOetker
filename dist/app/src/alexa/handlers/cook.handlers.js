@@ -207,6 +207,13 @@ module.exports = Alexa.CreateStateHandler(States.COOK, {
         this.emit('AMAZON.CancelIntent');
     },
 
+    'AMAZON.PauseIntent' : function () {
+        console.log('PAUSE');
+        this.handler.state = States.COOK;
+        this.emit('AMAZON.PauseIntent');
+        this.emit(':responseReady');
+    },
+
     'deleteProductsIntent': function () {
 
         var query = connection.query('TRUNCATE ingredients ', function (error) {

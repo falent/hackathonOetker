@@ -119,6 +119,7 @@ module.exports = Alexa.CreateStateHandler(States.RECIPE,{
     },
     
     'AMAZON.YesIntent' : function () {
+        this.response.speak("Los geht's").listen(SpeechOutputUtils.pickRandom(this.t('REPEAT')));
         this.handler.state = States.COOK;
         this.emitWithState('cookIntent');
     },

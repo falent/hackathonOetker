@@ -91,7 +91,7 @@ module.exports = Alexa.CreateStateHandler(States.COOKSTEPS, {
 
 
 
-                self.response.speak(steps[state].Body).listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')));
+                self.response.speak("Schritt " + (state + 1) +  steps[state].Body).listen(SpeechOutputUtils.pickRandom(self.t('REPEAT')));
 
                 self.emit(':responseReady');
 
