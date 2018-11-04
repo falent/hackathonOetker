@@ -56,6 +56,12 @@ module.exports = {
         HELP: [
             "Du kannst mich nach einem Rezept fragen. Ich lese es dir vor und unterstütze dich beim Zubereiten."
         ],
+        HELP_ASK: [
+            "Biitte Bitte frag mich was!."
+        ],
+        HELP_NEW_SESSION: [
+            "Du kannst mich nach einem Rezept fragen. zum Beispiel <break time='0.4s'/> Ich brauche Pfannkuchen oder <break time='0.4s'/> Ich habe eier gekauft"
+        ],
         STOP_ANSWER: [
             "Ich habe den Skill gestoppt. Bis bald"
         ],
